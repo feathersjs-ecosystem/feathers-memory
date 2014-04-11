@@ -1,6 +1,6 @@
 {
   "name": "feathers-memory",
-  "description": "Feathers memory service",
+  "description": "Feathers in memory service",
   "version": "0.1.1",
   "homepage": "https://feathersjs.com",
   "repository": {
@@ -42,7 +42,6 @@
     "chai": "~1.7.2",
     "mocha": "~1.12.0",
     "sinon": "~1.7.2",
-    "sinon-chai": "~2.4.0",
-    "database-cleaner": "~0.7.0"
+    "sinon-chai": "~2.4.0"
   }
 }
