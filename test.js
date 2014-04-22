@@ -1,12 +1,11 @@
 var chai = require('chai');
 var expect = chai.expect;
-var MemoryService = require('./memory');
-var Proto = require('uberproto');
+var memory = require('./memory');
 var service;
 
 describe('Memory Service', function () {
   beforeEach(function(done){
-    service = Proto.create.call(MemoryService);
+    service = memory();
     service.create({
       id: 1,
       name: 'Test 1'

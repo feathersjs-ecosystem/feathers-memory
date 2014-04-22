@@ -115,4 +115,8 @@ var MemoryService = Proto.extend({
   }
 });
 
-module.exports = MemoryService;
+module.exports = function(options) {
+  return Proto.create.call(MemoryService, options);
+}
+
+module.exports.Service = MemoryService;
