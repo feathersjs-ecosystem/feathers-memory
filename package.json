@@ -21,27 +21,32 @@
   "bugs": {
     "url": "https://github.com/feathersjs/feathers-memory/issues"
   },
-  "main": "memory.js",
+  "main": "lib/memory",
   "scripts": {
-    "test": "grunt"
+    "test": "grunt test",
+    "start": "grunt"
   },
   "engines": {
-    "node": "*",
-    "npm": "*"
+    "node": ">= 0.10.0"
   },
   "dependencies": {
     "uberproto": "~1.1.0",
-    "lodash": "~2.4.1"
+    "lodash": "~2.4.1",
+    "feathers-errors": "~0.1.0"
+  },
+  "peerDependencies": {
+    "feathers": "~0.4.0"
   },
   "devDependencies": {
-    "grunt-simple-mocha": "~0.4.0",
-    "grunt-cli": "~0.1.7",
+    "chai": "^1.9.1",
+    "feathers": ">= 0.3.1",
     "grunt": "~0.4.1",
-    "grunt-release": "~0.3.5",
-    "grunt-dox": "~0.4.2",
-    "chai": "~1.7.2",
-    "mocha": "~1.12.0",
-    "sinon": "~1.7.2",
-    "sinon-chai": "~2.4.0"
+    "grunt-cli": "~0.1.7",
+    "grunt-contrib-jshint": "~0.x",
+    "grunt-contrib-watch": "~0.5.3",
+    "grunt-release": "~0.5.1",
+    "grunt-simple-mocha": "~0.4.0",
+    "socket.io-client": "^0.9.16",
+    "supertest": "~0.9.0"
   }
 }

@@ -1,58 +1,44 @@
-var exec = require('child_process').exec;
+'use strict';
 
-module.exports = function(grunt) {
+module.exports = function (grunt) {
 
   // Project configuration.
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
-    meta: {
-      banner: '/*! <%= pkg.title || pkg.name %> - v<%= pkg.version %> - ' +
-        '<%= grunt.template.today("yyyy-mm-dd") %>\n' +
-        '<%= pkg.homepage ? "* " + pkg.homepage + "\n" : "" %>' +
-        '* Copyright (c) <%= grunt.template.today("yyyy") %> <%= pkg.author.name %>;' +
-        ' Licensed <%= _.pluck(pkg.licenses, "type").join(", ") %> */'
+    release: {},
+    watch: {
+        scripts: {
+            files: ['.jshintrc', 'lib/**/*.js', 'Gruntfile.js', 'test/**/*.js'],
+            tasks: ['jshint','simplemocha'],
+            options: {
+                spawn: true
+            }
+        }
     },
-
-    /* Testing
-    =======================================================*/
+    jshint: {
+      options: {
+        jshintrc: '.jshintrc'
+      },
+      lib: ['lib/**/*.js', 'Gruntfile.js'],
+      test: 'test/**/*.js',
+      examples: 'examples/**/*.js'
+    },
     simplemocha: {
-      options: {
-        globals: ['should', 'expect'],
-        timeout: 3000,
-        ui: 'bdd'
-      },
-
-      all: { src: 'test.js' }
-    },
-
-    /* Documentation
-    =======================================================*/
-    dox: {
-      options: {
-        title: "<%= pkg.title || pkg.name %>"
-      },
-      files: {
-        src: ['index.js'],
-        dest: 'docs'
+      all: {
+        options: {
+            reporter: 'spec',
+            clearRequireCache: true
+        },
+        src: ['test/**/*.test.js']
       }
     }
   });
 
-  grunt.loadNpmTasks('grunt-simple-mocha');
+  grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-release');
-  grunt.loadNpmTasks('grunt-dox');
+  grunt.loadNpmTasks('grunt-simple-mocha');
+  grunt.loadNpmTasks('grunt-contrib-watch');
 
-  // Alias'
-  // --------------------------------------------------
-  grunt.registerTask('test', ['simplemocha:all']);
-
-  // Default Task.
-  grunt.registerTask("default", ['development']);
-
-  // Development Tasks
-  // --------------------------------------------------
-  grunt.registerTask('development', ['test']);
-
-  // Release Tasks
-  // --------------------------------------------------
+  grunt.registerTask('test', ['jshint', 'simplemocha']);
+  grunt.registerTask('default', ['jshint', 'simplemocha', 'watch']);
 };

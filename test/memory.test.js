@@ -1,6 +1,10 @@
+'use strict';
+
+/* jshint undef:false, expr:true */
+
 var chai = require('chai');
 var expect = chai.expect;
-var MemoryService = require('./memory');
+var MemoryService = require('../lib/memory');
 var Proto = require('uberproto');
 var service;
 
@@ -10,13 +14,13 @@ describe('Memory Service', function () {
     service.create({
       id: 1,
       name: 'Test 1'
-    }, function(error, data) {
+    }, function() {
       done();
     });
   });
 
   afterEach(function(done){
-    service.remove(1, function(err){
+    service.remove(1, function(){
       done();
     });
   });
