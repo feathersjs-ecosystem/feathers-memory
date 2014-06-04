@@ -10,68 +10,91 @@ Install the module with: `npm install feathers-memory --save`
 var feathers = require('feathers');
 var memory = require('feathers-memory');
 
-var app = feathers().use('/users', memory('users'));
+var app = feathers().use('/users', memory);
 ```
 
 ## Documentation
 
-#### Current Error Types:
+#### API
 
-* `GeneralError`: 500
-* `BadRequest`: 400
-* `NotAuthenticated`: 401
-* `Forbidden`: 403
-* `NotFound`: 404
-* `Timeout`: 409
-* `Conflict`: 409
-* `PaymentError`: 409
-* `Unprocessable`: 422
+The feathers-memory service follows the same convention as all the other services. Therefore, it provides the following methods:
 
-**Pro Tip:** Feathers service adapters (ie. mongodb, memory, etc.) already emit the appropriate errors for you. :-)
+`find`, `get`, `create`, `update`, `patch`, `remove` and `setup`.
+
+```js
+var memoryService = {
+  find: function(params, callback) {},
+  get: function(id, params, callback) {},
+  create: function(data, params, callback) {},
+  update: function(id, data, params, callback) {},
+  patch: function(id, data, params, callback) {},
+  remove: function(id, params, callback) {},
+  setup: function(app) {}
+}
+```
 
 #### Usage:
 
 ```js
 var feathers = require('feathers');
-var errors = require('feathers-memory');
+var memory = require('feathers-memory');
 var app = feathers();
 
-var userService = {
-  find: function(params, callback) {
-
-    // If you were to create an error yourself.
-    callback(new this.app.errors.NotFound('User does not exist'));
-
-    // You can also simply do something like this if you
-    // just want to fire back a simple 500 error with your
-    // custom message.
-    // 
-    // callback('A generic server error');
-  },
-
-  setup: function(app){
-    this.app = app;
-  }
-};
-
-app.configure(errors())
-   .use('/users', userService)
-   .use(errors.handler);
+app.use('/users', memory).listen(8080);
 ```
 
-#### 404 Handling:
+#### Extending:
 
-We have conveniently created a basic 404 middleware as well. To use it:
+You can also extend any of the feathers services to do something custom.
 
 ```js
 var feathers = require('feathers');
-var errors = require('feathers-memory');
+var memory = require('feathers-memory');
 var app = feathers();
 
-app.configure(errors())
-   .use('/users', userService)
-   .use(errors.missing) // your 404 handler
-   .use(errors.handler);
+var myUserService = memory.extend({
+  find: function(params, cb){
+    // Do something awesome!
+    
+    console.log('I am extending the find method');
+    
+    this._super.apply(this, arguments);
+  }
+});
+
+app.use('/users', myUserService).listen(8080);
+```
+
+#### Advanced Querying
+
+You are probably also going to want to filter your data. You can do that by passing options via the body or in a query string. Like so:
+
+```
+GET /users?name=eric&limit=10&skip=10
+```
+
+__Sort:__
+
+```
+GET /users?sort[]=name&sort[]=age
+```
+
+__Order:__
+
+```
+GET /users?order=ascending
+```
+
+__Skip:__
+
+```
+GET /users?skip=10
+```
+
+__Limit:__
+
+```
+GET /users?limit=10
 ```
 
 ## Examples
@@ -81,9 +104,14 @@ See [examples directory](https://github.com/feathersjs/feathers-memory/tree/mast
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [Grunt](http://gruntjs.com/).
 
 ## Release History
-__0.1.3__
+__0.2.1__
 
 - Now utilizing [feathers-errors](https://github.com/feathersjs/feathers-errors)
+- Proper documentation
+
+__0.2.0__
+
+- Unknown
 
 __0.1.2__
 
