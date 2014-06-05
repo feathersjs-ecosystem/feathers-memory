@@ -4,13 +4,10 @@
 
 var chai = require('chai');
 var expect = chai.expect;
-var MemoryService = require('../lib/memory');
-var Proto = require('uberproto');
-var service;
+var service = require('../lib/memory')();
 
 describe('Memory Service', function () {
   beforeEach(function(done){
-    service = Proto.create.call(MemoryService);
     service.create({
       id: 1,
       name: 'Test 1'
@@ -54,7 +51,10 @@ describe('Memory Service', function () {
       }, function(error, data) {
         expect(data.id).to.equal(2);
         expect(data.name).to.equal('Test 2');
-        done();
+
+        service.remove(2, function(){
+          done();
+        });
       });
     });
 
