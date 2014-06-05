@@ -104,6 +104,15 @@ See [examples directory](https://github.com/feathersjs/feathers-memory/tree/mast
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [Grunt](http://gruntjs.com/).
 
 ## Release History
+__0.3.0__
+
+- Fixing how the module is exported.
+- Adding `PATCH` support back in
+
+__0.2.2__
+
+- Minor bug fixes
+
 __0.2.1__
 
 - Now utilizing [feathers-errors](https://github.com/feathersjs/feathers-errors)
