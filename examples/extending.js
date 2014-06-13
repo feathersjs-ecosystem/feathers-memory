@@ -1,5 +1,4 @@
 var feathers = require('feathers');
-var errors = require('feathers-errors');
 var memory = require('../lib/memory');
 var app = feathers();
 
@@ -15,7 +14,7 @@ var myUserService = memory.extend({
 });
 
 app.use('/users', myUserService)
-   .use(errors.handler)
+   .configure(feathers.errors())
    .listen(8080);
 
 console.log('App listening on 127.0.0.1:8080');
