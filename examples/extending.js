@@ -1,5 +1,5 @@
 var feathers = require('feathers');
-var memory = require('../lib/memory');
+var memory = require('../lib/memory')();
 var app = feathers();
 
 /* jshint unused:false */
@@ -13,7 +13,8 @@ var myUserService = memory.extend({
   }
 });
 
-app.use('/users', myUserService)
+app.configure(feathers.rest())
+   .use('/users', myUserService)
    .configure(feathers.errors())
    .listen(8080);
 

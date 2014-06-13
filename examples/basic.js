@@ -1,8 +1,9 @@
 var feathers = require('feathers');
-var memory = require('../lib/memory');
+var memory = require('../lib/memory')();
 var app = feathers();
 
-app.use('/users', memory)
+app.configure(feathers.rest())
+   .use('/users', memory)
    .configure(feathers.errors())
    .listen(8080);
 

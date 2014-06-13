@@ -8,9 +8,9 @@ Install the module with: `npm install feathers-memory --save`
 
 ```js
 var feathers = require('feathers');
-var memory = require('feathers-memory');
+var memory = require('feathers-memory')();
 
-var app = feathers().use('/users', memory);
+app.configure(feathers.rest()).use('/users', memory);
 ```
 
 ## Documentation
@@ -37,10 +37,12 @@ var memoryService = {
 
 ```js
 var feathers = require('feathers');
-var memory = require('feathers-memory');
+var memory = require('feathers-memory')();
 var app = feathers();
 
-app.use('/users', memory).listen(8080);
+app.configure(feathers.rest())
+   .use('/users', memory)
+   .listen(8080);
 ```
 
 #### Extending:
@@ -49,7 +51,7 @@ You can also extend any of the feathers services to do something custom.
 
 ```js
 var feathers = require('feathers');
-var memory = require('feathers-memory');
+var memory = require('feathers-memory')();
 var app = feathers();
 
 var myUserService = memory.extend({
@@ -62,7 +64,9 @@ var myUserService = memory.extend({
   }
 });
 
-app.use('/users', myUserService).listen(8080);
+app.configure(feathers.rest())
+   .use('/users', myUserService)
+   .listen(8080);
 ```
 
 #### Advanced Querying
