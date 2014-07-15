@@ -37,6 +37,7 @@
     "feathers": ">=1.0.x"
   },
   "devDependencies": {
+    "body-parser": "^1.4.3",
     "chai": "^1.9.1",
     "feathers": ">= 0.3.1",
     "grunt": "~0.4.1",
