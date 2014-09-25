@@ -30,16 +30,14 @@
     "node": ">= 0.10.0"
   },
   "dependencies": {
-    "uberproto": "~1.1.0",
-    "lodash": "~2.4.1"
-  },
-  "peerDependencies": {
-    "feathers": ">=1.0.x"
+    "feathers-errors": "^0.2.1",
+    "lodash": "~2.4.1",
+    "uberproto": "~1.1.0"
   },
   "devDependencies": {
     "body-parser": "^1.4.3",
     "chai": "^1.9.1",
-    "feathers": ">= 0.3.1",
+    "feathers": "^1.0.0-pre.5",
     "grunt": "~0.4.1",
     "grunt-cli": "~0.1.7",
     "grunt-contrib-jshint": "~0.x",
