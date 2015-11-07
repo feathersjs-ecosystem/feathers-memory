@@ -1,7 +1,7 @@
 {
   "name": "feathers-memory",
   "description": "An in memory service store",
-  "version": "0.0.0",
+  "version": "0.3.4",
   "homepage": "https://github.com/feathersjs/feathers-memory",
   "main": "lib/",
   "keywords": [
@@ -46,15 +46,17 @@
     "lib": "lib"
   },
   "dependencies": {
+    "feathers-errors": "^0.2.5",
     "feathers-query-filters": "^1.1.1",
-    "lodash": "^3.10.1"
+    "lodash": "^3.10.1",
+    "uberproto": "^1.1.2"
   },
   "devDependencies": {
     "babel-cli": "^6.1.2",
     "babel-core": "^6.1.2",
     "babel-preset-es2015": "^6.1.2",
     "feathers": "^1.1.1",
-    "feathers-service-tests": "^0.2.1",
+    "feathers-service-tests": "^0.3.0",
     "jshint": "^2.8.0",
     "mocha": "^2.3.3"
   }

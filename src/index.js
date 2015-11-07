@@ -28,7 +28,7 @@ export const specialFilters = {
     return current => current[key] >= value;
   },
 
-  $not(key, value) {
+  $ne(key, value) {
     return current => current[key] !== value;
   }
 };
