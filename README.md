@@ -82,6 +82,34 @@ app.configure(feathers.rest())
    .listen(8080);
 ```
 
+### With hooks
+
+Another option is to weave functionality into your existing services using [feathers-hooks](https://github.com/feathersjs/feathers-hooks), for example the above `createdAt` and `updatedAt` functionality:
+
+```js
+var feathers = require('feathers');
+var hooks = require('feathers-hooks');
+var memory = require('feathers-memory');
+
+// Initialize a MongoDB service with the users collection on a local MongoDB instance
+var app = feathers()
+  .configure(hooks())
+  .use('/users', memory());
+
+app.lookup('users').before({
+  create: function(hook, next) {
+    hook.data.createdAt = new Date();
+    next();
+  },
+
+  update: function(hook, next) {
+    hook.data.updatedAt = new Date();
+    next();
+  }
+});
+
+app.listen(8080);
+```
 
 ## Options
 
@@ -149,7 +177,8 @@ query: {
 
 ### `$select`
 
-`$select` support in a query allows you to pick which fields to include or exclude in the results.  Note: you can use the include syntax or the exclude syntax, not both together.  See the section on [`Projections`](https://github.com/louischatriot/nedb#projections) in the NeDB docs.
+`$select` support in a query allows you to pick which fields to include or exclude in the results.
+
 ```
 // Only retrieve name.
 query: {
