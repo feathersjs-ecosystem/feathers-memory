@@ -1,88 +1,24 @@
+require('babel-polyfill');
+
 import _ from 'lodash';
 import Proto from 'uberproto';
 import filter from 'feathers-query-filters';
 import { types as errors } from 'feathers-errors';
+import { sorter, filterSpecials } from './utils';
 
-export const specialFilters = {
-  $in(key, ins) {
-    return current => ins.indexOf(current[key]) !== -1;
-  },
-
-  $nin(key, nins) {
-    return current => nins.indexOf(current[key]) === -1;
-  },
-
-  $lt(key, value) {
-    return current => current[key] < value;
-  },
-
-  $lte(key, value) {
-    return current => current[key] <= value;
-  },
-
-  $gt(key, value) {
-    return current => current[key] > value;
-  },
-
-  $gte(key, value) {
-    return current => current[key] >= value;
-  },
-
-  $ne(key, value) {
-    return current => current[key] !== value;
-  }
-};
-
-function filterSpecials(values, query) {
-  if(query.$or) {
-    values = values.filter(current => {
-      return _.some(query.$or, or => _.isMatch(current, or));
-    });
-    delete query.$or;
-  }
-
-  _.each(query, (value, key) => {
-    if(_.isObject(value)) {
-      _.each(value, (target, prop) => {
-        if(specialFilters[prop]) {
-          values = values.filter(specialFilters[prop](key, target));
-        }
-      });
-
-      delete query[key];
-    }
-  });
-
-  return values;
-}
-
-function sorter($sort) {
-  return (first, second) => {
-    let comparator = 0;
-    _.each($sort, (modifier, key) => {
-      if(first[key] < second[key]) {
-        comparator -= 1 * modifier;
-      }
-
-      if(first[key] > second[key]) {
-        comparator += 1 * modifier;
-      }
-    });
-    return comparator;
-  };
-}
-
-const MemoryService = Proto.extend({
-  init(options) {
-    options = options || {};
-
-    this.type = 'memory';
+class Service {
+  constructor(options = {}) {
+    this.paginate = options.paginate || {};
     this._id = options.idField || 'id';
     this._uId = options.startId || 0;
     this.store = options.store || {};
-  },
+  }
 
-  find(params, cb) {
+  extend(obj) {
+    return Proto.extend(obj, this);
+  }
+
+  find(params) {
     const query = params.query || {};
     const filters = filter(query);
 
@@ -92,7 +28,8 @@ const MemoryService = Proto.extend({
       values = _.where(values, query);
     }
 
-		// Handle $sort
+    const total = values.length;
+
 		if (filters.$sort) {
       values.sort(sorter(filters.$sort));
 		}
@@ -101,81 +38,110 @@ const MemoryService = Proto.extend({
       values = values.slice(parseInt(filters.$skip, 10));
 		}
 
-		if (filters.$limit){
-      values = values.slice(0, parseInt(filters.$limit, 10));
+    let limit = parseInt(filters.$limit || this.paginate.default, 10);
+
+		if (limit) {
+      limit = Math.min(this.paginate.max || Number.MAX_VALUE, limit);
+      values = values.slice(0, limit);
 		}
 
     if(filters.$select) {
       values = values.map(value => _.pick(value, filters.$select));
     }
 
-    cb(null, values);
-  },
-
-  get(id, params, cb) {
-    if(typeof id === 'function') {
-      return id(new errors.BadRequest('An id needs to be provided'));
+    if(this.paginate.default) {
+      return Promise.resolve({
+        total,
+        limit,
+        skip: parseInt(filters.$skip || 0, 10),
+        data: values
+      });
     }
 
+    return Promise.resolve(values);
+  }
+
+  get(id) {
     if (id in this.store) {
-      return cb(null, this.store[id]);
+      return Promise.resolve(this.store[id]);
     }
 
-    cb(new errors.NotFound(`No record found for id '${id}'`));
-  },
+    return Promise.reject(new errors.NotFound(`No record found for id '${id}'`));
+  }
 
-  create(data, params, cb) {
-    var id = data[this._id] || this._uId++;
-    data = _.extend({}, data, { [this._id]: id });
+  create(data) {
+    if(Array.isArray(data)) {
+      return Promise.all(data.map(current => this.create(current)));
+    }
+
+    let id = data[this._id] || this._uId++;
+    let current = _.extend({}, data, { [this._id]: id });
 
     if (this.store[id]){
-      return cb(new errors.Conflict('A record with id: ' + id + ' already exists'));
+      return Promise.reject(new errors.Conflict(`A record with id: ${id} already exists`));
     }
 
-    this.store[id] = data;
+    return Promise.resolve((this.store[id] = current));
+  }
 
-    cb(null, data);
-  },
+  update(id, data) {
+    if(id === null || Array.isArray(data)) {
+      return Promise.reject(new errors.BadRequest(
+        `You can not replace multiple instances. Did you mean 'patch'?`
+      ));
+    }
 
-  update(id, data, params, cb) {
     if (id in this.store) {
       data = _.extend({}, data, { [this._id]: id });
       this.store[id] = data;
 
-      return cb(null, this.store[id]);
+      return Promise.resolve(this.store[id]);
     }
 
-    cb(new errors.NotFound(`No record found for id '${id}'`));
-  },
+    return Promise.reject(new errors.NotFound(`No record found for id '${id}'`));
+  }
 
-  patch(id, data, params, cb) {
+  patch(id, data, params) {
+    if(id === null) {
+      return this.find(params).then(instances => {
+        return Promise.all(instances.map(
+          current => this.patch(current[this._id], data, params))
+        );
+      });
+    }
+
     if (id in this.store) {
       _.each(data, (value, key) => {
         if(key !== this._id) {
           this.store[id][key] = value;
         }
-    });
+      });
 
-      return cb(null, this.store[id]);
+      return Promise.resolve(this.store[id]);
     }
 
-    cb(new errors.NotFound(`No record found for id '${id}'`));
-  },
+    return Promise.reject(new errors.NotFound(`No record found for id '${id}'`));
+  }
 
-  remove(id, params, cb) {
+  remove(id, params) {
+    if(id === null) {
+      return this.find(params).then(data =>
+        Promise.all(data.map(current => this.remove(current[this._id]))));
+    }
+
     if (id in this.store) {
       const deleted = this.store[id];
       delete this.store[id];
 
-      return cb(null, deleted);
+      return Promise.resolve(deleted);
     }
 
-    cb(new errors.NotFound(`No record found for id '${id}'`));
+    return Promise.reject(new errors.NotFound(`No record found for id '${id}'`));
   }
-});
+}
 
-module.exports = function(options) {
-  return Proto.create.call(MemoryService, options);
-};
+export default function init(options) {
+  return new Service(options);
+}
 
-module.exports.Service = MemoryService;
+init.Service = Service;

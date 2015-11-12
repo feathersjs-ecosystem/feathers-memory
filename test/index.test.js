@@ -1,11 +1,15 @@
 /*jshint expr: true*/
 
-import baseTests from 'feathers-service-tests';
+import { base, example } from 'feathers-service-tests';
 import errors from 'feathers-errors';
+import feathers from 'feathers';
+import assert from 'assert';
+import server from '../example/app';
 import memory from '../src';
 
 const _ids = {};
-const people = memory();
+const app = feathers().use('/people', memory());
+const people = app.service('people');
 
 function clean() {
   people._uId = 0;
@@ -20,25 +24,26 @@ describe('Feathers Memory Service', () => {
     people.create({
       name: 'Doug',
       age: 32
-    }, {}, (error, data) => {
-      if (error) {
-        console.error(error);
-      }
-
+    }).then(data => {
       _ids.Doug = data.id;
       done();
-    });
+    }, done);
   });
 
   afterEach(done => {
-    people.remove(_ids.Doug, {}, (error) => {
-      if (error) {
-        console.error(error);
-      }
-
-      done();
-    });
+    const doneNow = () => done();
+    people.remove(_ids.Doug).then(doneNow, doneNow);
   });
 
-  baseTests(people, _ids, errors.types);
+  it('is CommonJS compatible', () => {
+    assert.equal(typeof require('../lib'), 'function');
+  });
+
+  base(people, _ids, errors.types);
+});
+
+describe('Memory service example test', () => {
+  after(done => server.close(() => done()));
+
+  example();
 });
