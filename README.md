@@ -14,7 +14,7 @@ npm install feathers-memory --save
 
 ## Getting Started
 
-Creating an in-memory service is this simple:
+You can create an in-memory service with no options:
 
 ```js
 var memory = require('feathers-memory');
@@ -23,20 +23,18 @@ app.use('/todos', memory());
 
 This will create a `todos` datastore with the default configuration.
 
-### Complete Example
+## Complete Example
 
-Here is an example of a Feathers server with a `todos` in-memory service.
+Here is an example of a Feathers server with a `todos` in-memory service that supports pagination:
 
 ```js
-// server.js
-var feathers = require('feathers'),
-  bodyParser = require('body-parser'),
-  memory = require('feathers-memory');
+// app.js
+var feathers = require('feathers');
+var bodyParser = require('body-parser');
+var memory = require('feathers-memory');
 
 // Create a feathers instance.
 var app = feathers()
-  // Setup the public folder.
-  .use(feathers.static(__dirname + '/public'))
   // Enable Socket.io
   .configure(feathers.socketio())
   // Enable REST services
@@ -44,59 +42,58 @@ var app = feathers()
   // Turn on JSON parser for REST services
   .use(bodyParser.json())
   // Turn on URL-encoded parser for REST services
-  .use(bodyParser.urlencoded({ extended: true }))
+  .use(bodyParser.urlencoded({ extended: true }));
 
-// Connect to the db, create and register a Feathers service.
-app.use('/todos', memory());
+// Create an in-memory Feathers service with a default page size of 2 items
+// and a maximum size of 4
+app.use('/todos', memory({
+  paginate: {
+    default: 2,
+    max: 4
+  }
+}));
+
+// Create a dummy Todo
+app.service('todos').create({
+  text: 'Server todo',
+  complete: false
+}).then(function(todo) {
+  console.log('Created todo', todo);
+});
 
 // Start the server.
-var port = 8080;
+var port = 3030;
+
 app.listen(port, function() {
   console.log('Feathers server listening on port ' + port);
 });
 ```
 
-You can run this example by using `node examples/basic` and going to [localhost:8080/todos](http://localhost:8080/todos). You should see an empty array. That's because you don't have any Todos yet but you now have full CRUD for your new todos service.
+You can run this example by using `node examples/app` and going to [localhost:3030/todos](http://localhost:3030/todos). You will see the test Todo that we created at the end of that file.
 
-### Extending
+## Extending
 
-You can also extend any of the feathers services to do something custom.
+There are several ways to extend the basic CRUD functionality of this service. Keep in mind that calling the original service methods will return a Promise that resolves with the value.
 
-```js
-var feathers = require('feathers');
-var memory = require('feathers-memory');
-var app = feathers();
+### feathers-hooks
 
-var myUserService = memory().extend({
-  find: function(params, cb){
-    // Do something awesome!
-
-    console.log('I am extending the find method');
-
-    this._super.apply(this, arguments);
-  }
-});
-
-app.configure(feathers.rest())
-   .use('/users', myUserService)
-   .listen(8080);
-```
-
-### With hooks
-
-Another option is to weave functionality into your existing services using [feathers-hooks](https://github.com/feathersjs/feathers-hooks), for example the above `createdAt` and `updatedAt` functionality:
+The most flexible option is weaving in functionality through [feathers-hooks](https://github.com/feathersjs/feathers-hooks), for example, `createdAt` and `updatedAt` timestamps could be added like this:
 
 ```js
 var feathers = require('feathers');
 var hooks = require('feathers-hooks');
 var memory = require('feathers-memory');
 
-// Initialize a MongoDB service with the users collection on a local MongoDB instance
 var app = feathers()
   .configure(hooks())
-  .use('/users', memory());
+  .use('/todos', memory({
+    paginate: {
+      default: 2,
+      max: 4
+    }
+  }));
 
-app.lookup('users').before({
+app.service('todos').before({
   create: function(hook, next) {
     hook.data.createdAt = new Date();
     next();
@@ -108,7 +105,50 @@ app.lookup('users').before({
   }
 });
 
-app.listen(8080);
+app.listen(3030);
+```
+
+### Classes (ES6)
+
+The module also exports a Babel transpiled ES6 class as `Service` that can be directly extended like this:
+
+```js
+import { Service } from 'feathers-memory';
+
+class MyService extends Service {
+  create(data, params) {
+    data.created_at = new Date();
+
+    return super.create(data, params).then(todo);
+  }
+}
+
+app.use('/todos', new MyService({
+  paginate: {
+    default: 2,
+    max: 4
+  }
+}));
+```
+
+### Uberproto (ES5)
+
+You can also use `.extend` on a service instance (extension is provided by [Uberproto](https://github.com/daffl/uberproto)):
+
+```js
+var myService = memory({
+  paginate: {
+    default: 2,
+    max: 4
+  }
+}).extend({
+  create: function(data) {
+    data.created_at = new Date();
+    return this._super.apply(this, arguments);
+  }
+});
+
+app.use('/todos', myService);
 ```
 
 ## Options
@@ -118,7 +158,25 @@ The following options can be passed when creating a new memory service:
 - `idField` - The name of the id field property. Default is `id`
 - `startId` - An id number to start with that will be incremented for new record (default: `0`)
 - `store` - An object with id to item assignments to pre-initialize the data store
+- `paginate` - A pagination object containing a `default` and `max` page size (see below)
 
+## Pagination
+
+When initializing the service you can set the following pagination options in the `paginate` object:
+
+- `default` - Sets the default number of items
+- `max` - Sets the maximum allowed number of items per page (even if the `$limit` query parameter is set higher)
+
+When `paginate.default` is set, `find` will return an object (instead of the normal array) in the following form:
+
+```
+{
+  "total": "<total number of records>",
+  "limit": "<max number of items per page>",
+  "skip": "<number of skipped items (offset)>",
+  "data": [/* data */]
+}
+```
 
 ## Query Parameters
 
@@ -126,9 +184,9 @@ The `find` API allows the use of `$limit`, `$skip`, `$sort`, and `$select` in th
 
 ```js
 // Find all recipes that include salt, limit to 10, only include name field.
-{"ingredients":"salt", "$limit":10, "$select": { "name" :1 } } // JSON
+{"ingredients":"salt", "$limit":10, "$select": ["name"] } } // JSON
 
-GET /?ingredients=salt&$limit=10&$select[name]=1 // HTTP
+GET /?ingredients=salt&$limit=10&$select[]=name // HTTP
 ```
 
 As a result of allowing these to be put directly into the query string, you won't want to use `$limit`, `$skip`, `$sort`, or `$select` as the name of fields in your document schema.
