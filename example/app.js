@@ -24,3 +24,5 @@ app.use('/todos', memory({
 
 // Start the server
 module.exports = app.listen(3030);
+
+console.log('Feathers Todo memory service running on 127.0.0.1:3030');
