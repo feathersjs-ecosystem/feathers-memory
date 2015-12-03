@@ -73,7 +73,9 @@ You can run this example by using `node examples/app` and going to [localhost:30
 
 ## Extending
 
-There are several ways to extend the basic CRUD functionality of this service. Keep in mind that calling the original service methods will return a Promise that resolves with the value.
+There are several ways to extend the basic CRUD functionality of this service. 
+
+_Keep in mind that calling the original service methods will return a Promise that resolves with the value._
 
 ### feathers-hooks
 
@@ -93,16 +95,25 @@ var app = feathers()
     }
   }));
 
+var stripIds = function() {
+  delete hook.data.id;
+  next();
+}
+
+var updateTimestamp = function(hook, next) {
+  hook.data.updatedAt = new Date();
+  next();
+}
+
 app.service('todos').before({
+  // You can create a single hook like this
   create: function(hook, next) {
     hook.data.createdAt = new Date();
     next();
   },
 
-  update: function(hook, next) {
-    hook.data.updatedAt = new Date();
-    next();
-  }
+  // Or you can chain multiple hooks like this
+  update: [stripIds, updateTimeStamp]
 });
 
 app.listen(3030);
@@ -150,6 +161,8 @@ var myService = memory({
 
 app.use('/todos', myService);
 ```
+
+**Note:** _this is more for backwards compatibility. We recommend the usage of hooks as they are easier to test, easier to maintain and are more flexible._
 
 ## Options
 
