@@ -3,7 +3,7 @@ require('babel-polyfill');
 import _ from 'lodash';
 import Proto from 'uberproto';
 import filter from 'feathers-query-filters';
-import { types as errors } from 'feathers-errors';
+import errors from 'feathers-errors';
 import { sorter, filterSpecials } from './utils';
 
 class Service {

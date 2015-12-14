@@ -39,7 +39,7 @@ describe('Feathers Memory Service', () => {
     assert.equal(typeof require('../lib'), 'function');
   });
 
-  base(people, _ids, errors.types);
+  base(people, _ids, errors);
 });
 
 describe('Memory service example test', () => {
