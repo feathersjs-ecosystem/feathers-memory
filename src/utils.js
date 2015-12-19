@@ -56,6 +56,8 @@ export function sorter($sort) {
   return (first, second) => {
     let comparator = 0;
     _.each($sort, (modifier, key) => {
+      modifier = parseInt(modifier, 10);
+      
       if(first[key] < second[key]) {
         comparator -= 1 * modifier;
       }

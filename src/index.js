@@ -1,4 +1,4 @@
-require('babel-polyfill');
+if(!global._babelPolyfill) { require('babel-polyfill'); }
 
 import _ from 'lodash';
 import Proto from 'uberproto';
@@ -35,10 +35,10 @@ class Service {
 		}
 
 		if (filters.$skip){
-      values = values.slice(parseInt(filters.$skip, 10));
+      values = values.slice(filters.$skip);
 		}
 
-    let limit = parseInt(filters.$limit || this.paginate.default, 10);
+    let limit = filters.$limit || this.paginate.default;
 
 		if (limit) {
       limit = Math.min(this.paginate.max || Number.MAX_VALUE, limit);
@@ -53,7 +53,7 @@ class Service {
       return Promise.resolve({
         total,
         limit,
-        skip: parseInt(filters.$skip || 0, 10),
+        skip: filters.$skip || 0,
         data: values
       });
     }
