@@ -40,7 +40,7 @@
     "watch": "babel --watch -d lib/ src/",
     "jshint": "jshint src/. test/. --config",
     "mocha": "mocha test/ --compilers js:babel-core/register",
-    "test": "npm run compile && npm run jshint && npm run mocha"
+    "test": "npm run compile && npm run jshint && npm run mocha && nsp check"
   },
   "directories": {
     "lib": "lib"
@@ -61,7 +61,8 @@
     "feathers": "^1.1.1",
     "feathers-service-tests": "^0.5.0",
     "jshint": "^2.8.0",
-    "mocha": "^2.3.3"
+    "mocha": "^2.3.3",
+    "nsp": "^2.2.0"
   },
   "babel": {
     "plugins": [
