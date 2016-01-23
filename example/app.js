@@ -1,13 +1,12 @@
-var feathers = require('feathers');
-var bodyParser = require('body-parser');
-var memory = require('../lib');
+import feathers from 'feathers';
+import bodyParser from 'body-parser';
+import rest from 'feathers-rest';
+import memory from '../lib';
 
 // Create a feathers instance.
-var app = feathers()
-  // Enable Socket.io
-  .configure(feathers.socketio())
+const app = feathers()
   // Enable REST services
-  .configure(feathers.rest())
+  .configure(rest())
   // Turn on JSON parser for REST services
   .use(bodyParser.json())
   // Turn on URL-encoded parser for REST services

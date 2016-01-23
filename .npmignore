@@ -1,3 +1,8 @@
+.editorconfig
+.npmignore
+.jshintrc
+.travis.yml
+.babelrc
 .idea/
 src/
 test/

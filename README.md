@@ -25,17 +25,15 @@ Please refer to the [Feathers database adapter documentation](http://docs.feathe
 Here is an example of a Feathers server with a `todos` in-memory service that supports pagination:
 
 ```js
-// app.js
-var feathers = require('feathers');
-var bodyParser = require('body-parser');
-var memory = require('feathers-memory');
+import feathers from 'feathers';
+import bodyParser from 'body-parser';
+import rest from 'feathers-rest';
+import memory from '../lib';
 
 // Create a feathers instance.
-var app = feathers()
-  // Enable Socket.io
-  .configure(feathers.socketio())
+const app = feathers()
   // Enable REST services
-  .configure(feathers.rest())
+  .configure(rest())
   // Turn on JSON parser for REST services
   .use(bodyParser.json())
   // Turn on URL-encoded parser for REST services
@@ -62,11 +60,11 @@ app.service('todos').create({
 var port = 3030;
 
 app.listen(port, function() {
-  console.log('Feathers server listening on port ' + port);
+  console.log(`Feathers server listening on port ${port}`);
 });
 ```
 
-You can run this example by using `node examples/app` and going to [localhost:3030/todos](http://localhost:3030/todos). You will see the test Todo that we created at the end of that file.
+You can run this example by using `npm run example` and going to [localhost:3030/todos](http://localhost:3030/todos). You will see the test Todo that we created at the end of that file.
 
 
 ## Changelog
