@@ -64,12 +64,12 @@ app.listen(port, function() {
 });
 ```
 
-You can run this example by using `npm run example` and going to [localhost:3030/todos](http://localhost:3030/todos). You will see the test Todo that we created at the end of that file.
+You can run this example with `npm run example` from the cloned repository and going to [localhost:3030/todos](http://localhost:3030/todos). You will see the test Todo that we created at the end of that file.
 
 
 ## Changelog
 
-__0.4.0__
+__0.4.0/0.5.0__
 
 - Migrate to new ES6 plugin infrastructure and support all advanced querying mechanisms ([#10](https://github.com/feathersjs/feathers-memory/pull/10))
 

@@ -43,14 +43,14 @@
   },
   "dependencies": {
     "babel-polyfill": "^6.2.0",
-    "feathers": "^2.0.0-pre.4",
     "feathers-errors": "^1.1.4",
     "feathers-query-filters": "^1.1.1",
-    "feathers-rest": "^1.1.1",
     "lodash": "^3.10.1",
     "uberproto": "^1.2.0"
   },
   "devDependencies": {
+    "feathers": "^2.0.0-pre.4",
+    "feathers-rest": "^1.1.1",
     "babel-cli": "^6.1.2",
     "babel-core": "^6.1.2",
     "babel-plugin-add-module-exports": "^0.1.1",
