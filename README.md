@@ -69,6 +69,10 @@ You can run this example with `npm run example` from the cloned repository and g
 
 ## Changelog
 
+__0.6.0__
+
+- Use internal methods instead of service methods directly
+
 __0.4.0/0.5.0__
 
 - Migrate to new ES6 plugin infrastructure and support all advanced querying mechanisms ([#10](https://github.com/feathersjs/feathers-memory/pull/10))
