@@ -17,10 +17,12 @@ class Service {
   extend(obj) {
     return Proto.extend(obj, this);
   }
-
-  find(params) {
+  
+  // Find without hooks and mixins that can be used internally and always returns
+  // a pagination object
+  _find(params, getFilter = filter) {
     const query = params.query || {};
-    const filters = filter(query);
+    const filters = getFilter(query);
 
     let values = filterSpecials(_.values(this.store), query);
 
@@ -30,35 +32,39 @@ class Service {
 
     const total = values.length;
 
-		if (filters.$sort) {
+		if(filters.$sort) {
       values.sort(sorter(filters.$sort));
 		}
 
-		if (filters.$skip){
+		if(filters.$skip){
       values = values.slice(filters.$skip);
 		}
 
-    let limit = filters.$limit || this.paginate.default;
-
-		if (limit) {
-      limit = Math.min(this.paginate.max || Number.MAX_VALUE, limit);
-      values = values.slice(0, limit);
+		if(filters.$limit) {
+      values = values.slice(0, filters.$limit);
 		}
 
     if(filters.$select) {
       values = values.map(value => _.pick(value, filters.$select));
     }
 
-    if(this.paginate.default) {
-      return Promise.resolve({
-        total,
-        limit,
-        skip: filters.$skip || 0,
-        data: values
-      });
+    return Promise.resolve({
+      total,
+      limit: filters.$limit,
+      skip: filters.$skip || 0,
+      data: values
+    });
+  }
+  
+  find(params) {
+    // Call the internal find with query parameter that include pagination
+    const result = this._find(params, query => filter(query, this.paginate));
+    
+    if(!this.paginate.default) {
+      return result.then(page => page.data);
     }
-
-    return Promise.resolve(values);
+    
+    return result;
   }
 
   get(id) {
@@ -68,12 +74,9 @@ class Service {
 
     return Promise.reject(new errors.NotFound(`No record found for id '${id}'`));
   }
-
-  create(data) {
-    if(Array.isArray(data)) {
-      return Promise.all(data.map(current => this.create(current)));
-    }
-
+  
+  // Create without hooks and mixins that can be used internally
+  _create(data) {
     let id = data[this._id] || this._uId++;
     let current = _.extend({}, data, { [this._id]: id });
 
@@ -83,14 +86,17 @@ class Service {
 
     return Promise.resolve((this.store[id] = current));
   }
-
-  update(id, data) {
-    if(id === null || Array.isArray(data)) {
-      return Promise.reject(new errors.BadRequest(
-        `You can not replace multiple instances. Did you mean 'patch'?`
-      ));
+  
+  create(data) {
+    if(Array.isArray(data)) {
+      return Promise.all(data.map(current => this._create(current)));
     }
 
+    return this._create(data);
+  }
+  
+  // Update without hooks and mixins that can be used internally
+  _update(id, data) {
     if (id in this.store) {
       data = _.extend({}, data, { [this._id]: id });
       this.store[id] = data;
@@ -101,21 +107,20 @@ class Service {
     return Promise.reject(new errors.NotFound(`No record found for id '${id}'`));
   }
 
-  patch(id, data, params) {
-    if(id === null) {
-      return this.find(params).then(instances => {
-        return Promise.all(instances.map(
-          current => this.patch(current[this._id], data, params))
-        );
-      });
+  update(id, data) {
+    if(id === null || Array.isArray(data)) {
+      return Promise.reject(new errors.BadRequest(
+        `You can not replace multiple instances. Did you mean 'patch'?`
+      ));
     }
 
+    return this._update(id, data);
+  }
+  
+  // Patch without hooks and mixins that can be used internally
+  _patch(id, data) {
     if (id in this.store) {
-      _.each(data, (value, key) => {
-        if(key !== this._id) {
-          this.store[id][key] = value;
-        }
-      });
+      _.extend(this.store[id], _.omit(data, this._id));
 
       return Promise.resolve(this.store[id]);
     }
@@ -123,12 +128,20 @@ class Service {
     return Promise.reject(new errors.NotFound(`No record found for id '${id}'`));
   }
 
-  remove(id, params) {
+  patch(id, data, params) {
     if(id === null) {
-      return this.find(params).then(data =>
-        Promise.all(data.map(current => this.remove(current[this._id]))));
+      return this._find(params).then(page => {
+        return Promise.all(page.data.map(
+          current => this._patch(current[this._id], data, params))
+        );
+      });
     }
 
+    return this._patch(id, data, params);
+  }
+
+  // Remove without hooks and mixins that can be used internally
+  _remove(id) {
     if (id in this.store) {
       const deleted = this.store[id];
       delete this.store[id];
@@ -137,6 +150,16 @@ class Service {
     }
 
     return Promise.reject(new errors.NotFound(`No record found for id '${id}'`));
+  }
+  
+  remove(id, params) {
+    if(id === null) {
+      return this._find(params).then(page =>
+        Promise.all(page.data.map(current => this._remove(current[this._id])
+      )));
+    }
+
+    return this._remove(id);
   }
 }
 
