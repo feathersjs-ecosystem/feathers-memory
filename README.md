@@ -51,7 +51,7 @@ app.use('/messages', memory({
 // Create a dummy Message
 app.service('messages').create({
   text: 'Server message',
-  complete: false
+  read: false
 }).then(function(message) {
   console.log('Created message', message);
 });
