@@ -4,7 +4,7 @@ import { base, example } from 'feathers-service-tests';
 import errors from 'feathers-errors';
 import feathers from 'feathers';
 import assert from 'assert';
-import server from '../example/app';
+import server from './test-app';
 import memory from '../src';
 
 const _ids = {};

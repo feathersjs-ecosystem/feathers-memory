@@ -17,7 +17,7 @@ const app = feathers()
 
 // Create an in-memory Feathers service with a default page size of 2 items
 // and a maximum size of 4
-app.use('/messages', memory({
+app.use('/todos', memory({
   paginate: {
     default: 2,
     max: 4
@@ -27,4 +27,4 @@ app.use('/messages', memory({
 // Start the server
 module.exports = app.listen(3030);
 
-console.log('Feathers Message memory service running on 127.0.0.1:3030');
+console.log('Feathers Todo memory service running on 127.0.0.1:3030');
