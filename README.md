@@ -25,15 +25,18 @@ Please refer to the [Feathers database adapter documentation](http://docs.feathe
 Here is an example of a Feathers server with a `messages` in-memory service that supports pagination:
 
 ```js
-import feathers from 'feathers';
-import bodyParser from 'body-parser';
-import rest from 'feathers-rest';
-import memory from '../lib';
+var feathers = require('feathers');
+var bodyParser = require('body-parser');
+var rest = require('feathers-rest');
+var socketio = require('feathers-socketio');
+var memory from 'feathers-memory';
 
 // Create a feathers instance.
 const app = feathers()
   // Enable REST services
   .configure(rest())
+  // Enable Socket.io services
+  .configure(socketio())
   // Turn on JSON parser for REST services
   .use(bodyParser.json())
   // Turn on URL-encoded parser for REST services
