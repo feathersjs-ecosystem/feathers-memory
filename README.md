@@ -67,7 +67,7 @@ app.listen(port, function() {
 });
 ```
 
-You can run this example with `npm run example` from the cloned repository and going to [localhost:3030/messages](http://localhost:3030/messages). You will see the test Message that we created at the end of that file.
+You can run this example with `npm start` from the cloned repository and going to [localhost:3030/messages](http://localhost:3030/messages). You will see the test Message that we created at the end of that file.
 
 
 ## Changelog
