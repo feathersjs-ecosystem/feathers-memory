@@ -1,4 +1,4 @@
-import _ from 'lodash';
+import { each, some, isObject, isMatch } from 'lodash';
 
 export const specialFilters = {
   $in(key, ins) {
@@ -33,13 +33,13 @@ export const specialFilters = {
 export function filterSpecials(values, query) {
   if(query.$or) {
     values = values.filter(current =>
-      _.some(query.$or, or => _.isMatch(current, or)));
+      some(query.$or, or => isMatch(current, or)));
     delete query.$or;
   }
 
-  _.each(query, (value, key) => {
-    if(_.isObject(value)) {
-      _.each(value, (target, prop) => {
+  each(query, (value, key) => {
+    if(isObject(value)) {
+      each(value, (target, prop) => {
         if(specialFilters[prop]) {
           values = values.filter(specialFilters[prop](key, target));
         }
@@ -55,7 +55,7 @@ export function filterSpecials(values, query) {
 export function sorter($sort) {
   return (first, second) => {
     let comparator = 0;
-    _.each($sort, (modifier, key) => {
+    each($sort, (modifier, key) => {
       modifier = parseInt(modifier, 10);
       
       if(first[key] < second[key]) {

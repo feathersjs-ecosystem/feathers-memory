@@ -1,6 +1,8 @@
 if(!global._babelPolyfill) { require('babel-polyfill'); }
 
-import _ from 'lodash';
+import { isEmpty, pick, extend, omit } from 'lodash';
+import { values as getValues } from 'lodash';
+import { filter as _filter } from 'lodash';
 import Proto from 'uberproto';
 import filter from 'feathers-query-filters';
 import errors from 'feathers-errors';
@@ -24,10 +26,10 @@ class Service {
     const query = params.query || {};
     const filters = getFilter(query);
 
-    let values = filterSpecials(_.values(this.store), query);
+    let values = filterSpecials(getValues(this.store), query);
 
-    if(!_.isEmpty(query)) {
-      values = _.where(values, query);
+    if(!isEmpty(query)) {
+      values = _filter(values, query);
     }
 
     const total = values.length;
@@ -45,7 +47,7 @@ class Service {
 		}
 
     if(filters.$select) {
-      values = values.map(value => _.pick(value, filters.$select));
+      values = values.map(value => pick(value, filters.$select));
     }
 
     return Promise.resolve({
@@ -78,7 +80,7 @@ class Service {
   // Create without hooks and mixins that can be used internally
   _create(data) {
     let id = data[this._id] || this._uId++;
-    let current = _.extend({}, data, { [this._id]: id });
+    let current = extend({}, data, { [this._id]: id });
 
     if (this.store[id]){
       return Promise.reject(new errors.Conflict(`A record with id: ${id} already exists`));
@@ -98,7 +100,7 @@ class Service {
   // Update without hooks and mixins that can be used internally
   _update(id, data) {
     if (id in this.store) {
-      data = _.extend({}, data, { [this._id]: id });
+      data = extend({}, data, { [this._id]: id });
       this.store[id] = data;
 
       return Promise.resolve(this.store[id]);
@@ -120,7 +122,7 @@ class Service {
   // Patch without hooks and mixins that can be used internally
   _patch(id, data) {
     if (id in this.store) {
-      _.extend(this.store[id], _.omit(data, this._id));
+      extend(this.store[id], omit(data, this._id));
 
       return Promise.resolve(this.store[id]);
     }
