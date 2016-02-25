@@ -1,4 +1,9 @@
-import _ from 'lodash';
+const _ = {
+  some: require('lodash/some'),
+  isMatch: require('lodash/isMatch'),
+  each: require('lodash/each'),
+  isObject: require('lodash/isObject')
+};
 
 export const specialFilters = {
   $in(key, ins) {

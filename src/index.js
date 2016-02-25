@@ -1,10 +1,18 @@
 if(!global._babelPolyfill) { require('babel-polyfill'); }
 
-import _ from 'lodash';
 import Proto from 'uberproto';
 import filter from 'feathers-query-filters';
 import errors from 'feathers-errors';
 import { sorter, filterSpecials } from './utils';
+
+const _ = {
+  values: require('lodash/values'),
+  isEmpty: require('lodash/isEmpty'),
+  where: require('lodash/filter'),
+  extend: require('lodash/extend'),
+  omit: require('lodash/omit'),
+  pick: require('lodash/pick')
+};
 
 class Service {
   constructor(options = {}) {
