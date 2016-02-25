@@ -43,9 +43,9 @@
   },
   "dependencies": {
     "babel-polyfill": "^6.2.0",
-    "feathers-errors": "^2.0.0",
+    "feathers-errors": "^2.0.1",
     "feathers-query-filters": "^1.1.1",
-    "lodash": "^3.10.1",
+    "lodash": "^4.5.1",
     "uberproto": "^1.2.0"
   },
   "devDependencies": {
