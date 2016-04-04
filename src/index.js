@@ -1,17 +1,32 @@
-if(!global._babelPolyfill) { require('babel-polyfill'); }
-
 import Proto from 'uberproto';
 import filter from 'feathers-query-filters';
 import errors from 'feathers-errors';
-import { sorter, filterSpecials } from './utils';
+import { sorter, matcher } from 'feathers-commons/lib/utils';
 
 const _ = {
-  values: require('lodash/values'),
-  isEmpty: require('lodash/isEmpty'),
-  where: require('lodash/filter'),
-  extend: require('lodash/extend'),
-  omit: require('lodash/omit'),
-  pick: require('lodash/pick')
+  values(obj) {
+    return Object.keys(obj).map(key => obj[key]);
+  },
+  isEmpty(obj) {
+    return Object.keys(obj).length === 0;
+  },
+  extend(... args) {
+    return Object.assign(... args);
+  },
+  omit(obj, ...keys) {
+    const result = Object.assign({}, obj);
+    for(let key of keys) {
+      delete result[key];
+    }
+    return result;
+  },
+  pick(source, ...keys) {
+    const result = {};
+    for(let key of keys) {
+      result[key] = source[key];
+    }
+    return result;
+  }
 };
 
 class Service {
@@ -25,18 +40,14 @@ class Service {
   extend(obj) {
     return Proto.extend(obj, this);
   }
-  
+
   // Find without hooks and mixins that can be used internally and always returns
   // a pagination object
   _find(params, getFilter = filter) {
     const query = params.query || {};
     const filters = getFilter(query);
 
-    let values = filterSpecials(_.values(this.store), query);
-
-    if(!_.isEmpty(query)) {
-      values = _.where(values, query);
-    }
+    let values = _.values(this.store).filter(matcher(query));
 
     const total = values.length;
 
@@ -63,15 +74,15 @@ class Service {
       data: values
     });
   }
-  
+
   find(params) {
     // Call the internal find with query parameter that include pagination
     const result = this._find(params, query => filter(query, this.paginate));
-    
+
     if(!this.paginate.default) {
       return result.then(page => page.data);
     }
-    
+
     return result;
   }
 
@@ -82,7 +93,7 @@ class Service {
 
     return Promise.reject(new errors.NotFound(`No record found for id '${id}'`));
   }
-  
+
   // Create without hooks and mixins that can be used internally
   _create(data) {
     let id = data[this._id] || this._uId++;
@@ -94,7 +105,7 @@ class Service {
 
     return Promise.resolve((this.store[id] = current));
   }
-  
+
   create(data) {
     if(Array.isArray(data)) {
       return Promise.all(data.map(current => this._create(current)));
@@ -102,7 +113,7 @@ class Service {
 
     return this._create(data);
   }
-  
+
   // Update without hooks and mixins that can be used internally
   _update(id, data) {
     if (id in this.store) {
@@ -124,7 +135,7 @@ class Service {
 
     return this._update(id, data);
   }
-  
+
   // Patch without hooks and mixins that can be used internally
   _patch(id, data) {
     if (id in this.store) {
@@ -159,7 +170,7 @@ class Service {
 
     return Promise.reject(new errors.NotFound(`No record found for id '${id}'`));
   }
-  
+
   remove(id, params) {
     if(id === null) {
       return this._find(params).then(page =>
