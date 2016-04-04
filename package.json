@@ -42,10 +42,9 @@
     "lib": "lib"
   },
   "dependencies": {
-    "babel-polyfill": "^6.2.0",
+    "feathers-commons": "^0.7.1",
     "feathers-errors": "^2.0.1",
     "feathers-query-filters": "^1.1.1",
-    "lodash": "^4.5.1",
     "uberproto": "^1.2.0"
   },
   "devDependencies": {
