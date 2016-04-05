@@ -72,6 +72,10 @@ You can run this example with `npm start` from the cloned repository and going t
 
 ## Changelog
 
+__0.7.0__
+
+- Pulled out lodash and moved to using common utility methods from feathers-commons
+
 __0.6.0__
 
 - Use internal methods instead of service methods directly
