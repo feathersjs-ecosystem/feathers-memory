@@ -42,7 +42,7 @@
     "lib": "lib"
   },
   "dependencies": {
-    "feathers-commons": "^0.7.1",
+    "feathers-commons": "^0.7.2",
     "feathers-errors": "^2.0.1",
     "feathers-query-filters": "^1.1.1",
     "uberproto": "^1.2.0"
