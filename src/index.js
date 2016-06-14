@@ -117,6 +117,10 @@ class Service {
   // Update without hooks and mixins that can be used internally
   _update(id, data) {
     if (id in this.store) {
+      // We don't want our id to change type if it can be coerced
+      const oldId = this.store[id][this._id];
+      id = oldId == id ? oldId : id; // jshint ignore:line
+
       data = _.extend({}, data, { [this._id]: id });
       this.store[id] = data;
 
