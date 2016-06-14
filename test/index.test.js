@@ -39,6 +39,17 @@ describe('Feathers Memory Service', () => {
     assert.equal(typeof require('../lib'), 'function');
   });
 
+  it('update with string id works', done => {
+    people.create({
+      name: 'Tester',
+      age: 33
+    }).then(person =>
+      people.update(person.id.toString(), person).then(updatedPerson =>
+        assert.equal(typeof updatedPerson.id, 'number')
+      ).then(() => people.remove(person.id.toString()))
+    ).then(() => done()).catch(done);
+  });
+
   base(people, _ids, errors);
 });
 
