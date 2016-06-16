@@ -76,10 +76,12 @@ class Service {
   }
 
   find(params) {
+    const paginate = typeof params.paginate !== 'undefined' ?
+      params.paginate : this.paginate;
     // Call the internal find with query parameter that include pagination
-    const result = this._find(params, query => filter(query, this.paginate));
+    const result = this._find(params, query => filter(query, paginate));
 
-    if(!this.paginate.default) {
+    if(!(paginate && paginate.default)) {
       return result.then(page => page.data);
     }
 
