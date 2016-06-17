@@ -69,53 +69,8 @@ app.listen(port, function() {
 
 You can run this example with `npm start` from the cloned repository and going to [localhost:3030/messages](http://localhost:3030/messages). You will see the test Message that we created at the end of that file.
 
-
-## Changelog
-
-__0.7.0__
-
-- Pulled out lodash and moved to using common utility methods from feathers-commons
-
-__0.6.0__
-
-- Use internal methods instead of service methods directly
-
-__0.4.0/0.5.0__
-
-- Migrate to new ES6 plugin infrastructure and support all advanced querying mechanisms ([#10](https://github.com/feathersjs/feathers-memory/pull/10))
-
-__0.3.0__
-
-- Fixing how the module is exported.
-- Adding `PATCH` support back in
-
-__0.2.2__
-
-- Minor bug fixes
-
-__0.2.1__
-
-- Now utilizing [feathers-errors](https://github.com/feathersjs/feathers-errors)
-- Proper documentation
-
-__0.2.0__
-
-- Unknown
-
-__0.1.2__
-
-- Unknown
-
-__0.1.1__
-
-- Unknown
-
-__0.1.0__
-
-- Initial release
-
 ## License
 
-Copyright (c) 2015
+Copyright (c) 2016
 
 Licensed under the [MIT license](LICENSE).
