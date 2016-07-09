@@ -44,8 +44,7 @@ class Service {
   // Find without hooks and mixins that can be used internally and always returns
   // a pagination object
   _find(params, getFilter = filter) {
-    const query = params.query || {};
-    const filters = getFilter(query);
+    const { query, filters } = getFilter(params.query || {});
 
     let values = _.values(this.store).filter(matcher(query));
 
