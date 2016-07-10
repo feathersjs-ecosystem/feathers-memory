@@ -35,7 +35,7 @@
     "watch": "babel --watch -d lib/ src/",
     "jshint": "jshint src/. test/. --config",
     "mocha": "mocha test/ --compilers js:babel-core/register",
-    "test": "npm run compile && npm run jshint && npm run mocha && nsp check",
+    "test": "npm run compile && npm run jshint && npm run mocha",
     "start": "node example/app.js"
   },
   "directories": {
@@ -44,7 +44,7 @@
   "dependencies": {
     "feathers-commons": "^0.7.1",
     "feathers-errors": "^2.0.1",
-    "feathers-query-filters": "^1.1.1",
+    "feathers-query-filters": "^2.0.0",
     "uberproto": "^1.2.0"
   },
   "devDependencies": {
@@ -58,7 +58,6 @@
     "feathers-service-tests": "^0.6.0",
     "feathers-socketio": "^1.3.3",
     "jshint": "^2.8.0",
-    "mocha": "^2.5.0",
-    "nsp": "^2.2.0"
+    "mocha": "^2.5.0"
   }
 }
