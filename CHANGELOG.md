@@ -1,5 +1,12 @@
 # Change Log
 
+## [v0.7.4](https://github.com/feathersjs/feathers-memory/tree/v0.7.4) (2016-07-21)
+[Full Changelog](https://github.com/feathersjs/feathers-memory/compare/v0.7.3...v0.7.4)
+
+**Merged pull requests:**
+
+- Update feathers-query-filters to version 2.0.0 🚀 [\#28](https://github.com/feathersjs/feathers-memory/pull/28) ([greenkeeperio-bot](https://github.com/greenkeeperio-bot))
+
 ## [v0.7.3](https://github.com/feathersjs/feathers-memory/tree/v0.7.3) (2016-06-16)
 [Full Changelog](https://github.com/feathersjs/feathers-memory/compare/v0.7.2...v0.7.3)
 
