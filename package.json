@@ -3,7 +3,7 @@
   "description": "An in memory service store",
   "version": "0.7.4",
   "homepage": "https://github.com/feathersjs/feathers-memory",
-  "main": "lib/",
+  "main": "lib/index",
   "keywords": [
     "feathers",
     "feathers-plugin"
