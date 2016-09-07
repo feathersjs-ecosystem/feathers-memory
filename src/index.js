@@ -32,9 +32,10 @@ const _ = {
 class Service {
   constructor(options = {}) {
     this.paginate = options.paginate || {};
-    this._id = options.idField || 'id';
+    this._id = this.id = options.idField || options.id || 'id';
     this._uId = options.startId || 0;
     this.store = options.store || {};
+    this.events = options.events || [];
   }
 
   extend(obj) {
