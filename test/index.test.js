@@ -7,50 +7,35 @@ import assert from 'assert';
 import server from './test-app';
 import memory from '../src';
 
-const _ids = {};
-const app = feathers().use('/people', memory());
-const people = app.service('people');
-
-function clean() {
-  people._uId = 0;
-  people.store = {};
-}
-
 describe('Feathers Memory Service', () => {
-  before(clean);
-  after(clean);
+  const events = [ 'testing' ];
+  const app = feathers()
+    .use('/people', memory({ events }))
+    .use('/people-customid', memory({
+      id: 'customid', events
+    }));
 
-  beforeEach(done => {
-    people.create({
-      name: 'Doug',
-      age: 32
-    }).then(data => {
-      _ids.Doug = data.id;
-      done();
-    }, done);
-  });
+  it('is CommonJS compatible', () =>
+    assert.equal(typeof require('../lib'), 'function')
+  );
 
-  afterEach(done => {
-    const doneNow = () => done();
-    people.remove(_ids.Doug).then(doneNow, doneNow);
-  });
-
-  it('is CommonJS compatible', () => {
-    assert.equal(typeof require('../lib'), 'function');
-  });
-
-  it('update with string id works', done => {
-    people.create({
+  it('update with string id works', () =>
+    app.service('people').create({
       name: 'Tester',
       age: 33
     }).then(person =>
-      people.update(person.id.toString(), person).then(updatedPerson =>
-        assert.equal(typeof updatedPerson.id, 'number')
-      ).then(() => people.remove(person.id.toString()))
-    ).then(() => done()).catch(done);
-  });
+      app.service('people')
+        .update(person.id.toString(), person)
+        .then(updatedPerson =>
+          assert.equal(typeof updatedPerson.id, 'number')
+        )
+        .then(() => app.service('people')
+        .remove(person.id.toString()))
+    )
+  );
 
-  base(people, _ids, errors);
+  base(app, errors);
+  base(app, errors, 'people-customid', 'customid');
 });
 
 describe('Memory service example test', () => {
