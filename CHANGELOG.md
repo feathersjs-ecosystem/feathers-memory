@@ -1,5 +1,17 @@
 # Change Log
 
+## [v0.8.0](https://github.com/feathersjs/feathers-memory/tree/v0.8.0) (2016-09-08)
+[Full Changelog](https://github.com/feathersjs/feathers-memory/compare/v0.7.5...v0.8.0)
+
+**Closed issues:**
+
+- Remove object from memory once sent? [\#30](https://github.com/feathersjs/feathers-memory/issues/30)
+
+**Merged pull requests:**
+
+- Update service tests, id and events option [\#31](https://github.com/feathersjs/feathers-memory/pull/31) ([greenkeeperio-bot](https://github.com/greenkeeperio-bot))
+- Update mocha to version 3.0.0 🚀 [\#29](https://github.com/feathersjs/feathers-memory/pull/29) ([greenkeeperio-bot](https://github.com/greenkeeperio-bot))
+
 ## [v0.7.5](https://github.com/feathersjs/feathers-memory/tree/v0.7.5) (2016-07-25)
 [Full Changelog](https://github.com/feathersjs/feathers-memory/compare/v0.7.4...v0.7.5)
 
