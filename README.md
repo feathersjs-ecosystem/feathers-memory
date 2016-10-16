@@ -1,6 +1,10 @@
 # feathers-memory
 
 [![Build Status](https://travis-ci.org/feathersjs/feathers-memory.png?branch=master)](https://travis-ci.org/feathersjs/feathers-memory)
+[![Code Climate](https://codeclimate.com/github/feathersjs/feathers-memory/badges/gpa.svg)](https://codeclimate.com/github/feathersjs/feathers-memory)
+[![Test Coverage](https://codeclimate.com/github/feathersjs/feathers-memory/badges/coverage.svg)](https://codeclimate.com/github/feathersjs/feathers-memory/coverage)
+[![Dependency Status](https://img.shields.io/david/feathersjs/feathers-memory.svg?style=flat-square)](https://david-dm.org/feathersjs/feathers-memory)
+[![Download Status](https://img.shields.io/npm/dm/feathers-memory.svg?style=flat-square)](https://www.npmjs.com/package/feathers-memory)
 
 > An in memory CRUD service for Feathers.
 
