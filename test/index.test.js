@@ -1,5 +1,3 @@
-/*jshint expr: true*/
-
 import { base, example } from 'feathers-service-tests';
 import errors from 'feathers-errors';
 import feathers from 'feathers';
