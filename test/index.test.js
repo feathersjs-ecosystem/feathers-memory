@@ -1,4 +1,4 @@
-/*jshint expr: true*/
+/* jshint expr: true */
 
 import { base, example } from 'feathers-service-tests';
 import errors from 'feathers-errors';
