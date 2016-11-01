@@ -64,7 +64,7 @@ class Service {
     }
 
     if (filters.$select) {
-      values = values.map(value => _.pick(value, filters.$select));
+      values = values.map(value => _.pick(value, ...filters.$select));
     }
 
     return Promise.resolve({
