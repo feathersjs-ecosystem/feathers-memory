@@ -1,5 +1,17 @@
 # Change Log
 
+## [v0.8.1](https://github.com/feathersjs/feathers-memory/tree/v0.8.1) (2016-11-02)
+[Full Changelog](https://github.com/feathersjs/feathers-memory/compare/v0.8.0...v0.8.1)
+
+**Merged pull requests:**
+
+- fix $select with more than one field [\#42](https://github.com/feathersjs/feathers-memory/pull/42) ([t2t2](https://github.com/t2t2))
+- babel-preset-es2015@6.18.0 breaks build 🚨 [\#41](https://github.com/feathersjs/feathers-memory/pull/41) ([greenkeeperio-bot](https://github.com/greenkeeperio-bot))
+- Two tweaks for clean build and tests on Windows [\#38](https://github.com/feathersjs/feathers-memory/pull/38) ([ghost](https://github.com/ghost))
+- jshint —\> semistandard [\#37](https://github.com/feathersjs/feathers-memory/pull/37) ([marshallswain](https://github.com/marshallswain))
+- adding code coverage reporting [\#36](https://github.com/feathersjs/feathers-memory/pull/36) ([ekryski](https://github.com/ekryski))
+- Update feathers-service-tests to version 0.8.0 🚀 [\#32](https://github.com/feathersjs/feathers-memory/pull/32) ([greenkeeperio-bot](https://github.com/greenkeeperio-bot))
+
 ## [v0.8.0](https://github.com/feathersjs/feathers-memory/tree/v0.8.0) (2016-09-08)
 [Full Changelog](https://github.com/feathersjs/feathers-memory/compare/v0.7.5...v0.8.0)
 
