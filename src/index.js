@@ -1,7 +1,7 @@
 import Proto from 'uberproto';
 import filter from 'feathers-query-filters';
 import errors from 'feathers-errors';
-import { sorter, matcher, _ } from 'feathers-commons';
+import { sorter, matcher, select, _ } from 'feathers-commons';
 
 class Service {
   constructor (options = {}) {
@@ -33,7 +33,7 @@ class Service {
       values = values.slice(filters.$skip);
     }
 
-    if (filters.$limit) {
+    if (typeof filters.$limit !== 'undefined') {
       values = values.slice(0, filters.$limit);
     }
 
@@ -50,8 +50,7 @@ class Service {
   }
 
   find (params) {
-    const paginate = typeof params.paginate !== 'undefined'
-      ? params.paginate : this.paginate;
+    const paginate = typeof params.paginate !== 'undefined' ? params.paginate : this.paginate;
     // Call the internal find with query parameter that include pagination
     const result = this._find(params, query => filter(query, paginate));
 
@@ -62,16 +61,18 @@ class Service {
     return result;
   }
 
-  get (id) {
+  get (id, params) {
     if (id in this.store) {
-      return Promise.resolve(this.store[id]);
+      return Promise.resolve(this.store[id]).then(select(params, this.id));
     }
 
-    return Promise.reject(new errors.NotFound(`No record found for id '${id}'`));
+    return Promise.reject(
+      new errors.NotFound(`No record found for id '${id}'`)
+    );
   }
 
   // Create without hooks and mixins that can be used internally
-  _create (data) {
+  _create (data, params) {
     let id = data[this._id] || this._uId++;
     let current = _.extend({}, data, { [this._id]: id });
 
@@ -79,52 +80,60 @@ class Service {
       return Promise.reject(new errors.Conflict(`A record with id: ${id} already exists`));
     }
 
-    return Promise.resolve((this.store[id] = current));
+    return Promise.resolve((this.store[id] = current))
+      .then(select(params, this.id));
   }
 
-  create (data) {
+  create (data, params) {
     if (Array.isArray(data)) {
       return Promise.all(data.map(current => this._create(current)));
     }
 
-    return this._create(data);
+    return this._create(data, params);
   }
 
   // Update without hooks and mixins that can be used internally
-  _update (id, data) {
+  _update (id, data, params) {
     if (id in this.store) {
       // We don't want our id to change type if it can be coerced
       const oldId = this.store[id][this._id];
+
       id = oldId == id ? oldId : id; // eslint-disable-line
 
       data = _.extend({}, data, { [this._id]: id });
       this.store[id] = data;
 
-      return Promise.resolve(this.store[id]);
+      return Promise.resolve(this.store[id])
+        .then(select(params, this.id));
     }
 
-    return Promise.reject(new errors.NotFound(`No record found for id '${id}'`));
+    return Promise.reject(
+      new errors.NotFound(`No record found for id '${id}'`)
+    );
   }
 
-  update (id, data) {
+  update (id, data, params) {
     if (id === null || Array.isArray(data)) {
       return Promise.reject(new errors.BadRequest(
         `You can not replace multiple instances. Did you mean 'patch'?`
       ));
     }
 
-    return this._update(id, data);
+    return this._update(id, data, params);
   }
 
   // Patch without hooks and mixins that can be used internally
-  _patch (id, data) {
+  _patch (id, data, params) {
     if (id in this.store) {
       _.extend(this.store[id], _.omit(data, this._id));
 
-      return Promise.resolve(this.store[id]);
+      return Promise.resolve(this.store[id])
+        .then(select(params, this.id));
     }
 
-    return Promise.reject(new errors.NotFound(`No record found for id '${id}'`));
+    return Promise.reject(
+      new errors.NotFound(`No record found for id '${id}'`)
+    );
   }
 
   patch (id, data, params) {
@@ -140,25 +149,30 @@ class Service {
   }
 
   // Remove without hooks and mixins that can be used internally
-  _remove (id) {
+  _remove (id, params) {
     if (id in this.store) {
       const deleted = this.store[id];
       delete this.store[id];
 
-      return Promise.resolve(deleted);
+      return Promise.resolve(deleted)
+        .then(select(params, this.id));
     }
 
-    return Promise.reject(new errors.NotFound(`No record found for id '${id}'`));
+    return Promise.reject(
+      new errors.NotFound(`No record found for id '${id}'`)
+    );
   }
 
   remove (id, params) {
     if (id === null) {
       return this._find(params).then(page =>
-        Promise.all(page.data.map(current => this._remove(current[this._id])
+        Promise.all(page.data.map(current =>
+          this._remove(current[this._id], params
+        )
       )));
     }
 
-    return this._remove(id);
+    return this._remove(id, params);
   }
 }
 
