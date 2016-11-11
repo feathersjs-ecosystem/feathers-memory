@@ -1,5 +1,17 @@
 # Change Log
 
+## [v1.0.0](https://github.com/feathersjs/feathers-memory/tree/v1.0.0) (2016-11-11)
+[Full Changelog](https://github.com/feathersjs/feathers-memory/compare/v0.8.1...v1.0.0)
+
+**Closed issues:**
+
+- Support $select for gets [\#35](https://github.com/feathersjs/feathers-memory/issues/35)
+
+**Merged pull requests:**
+
+- Update feathers-service-tests to version 0.9.0 🚀 [\#44](https://github.com/feathersjs/feathers-memory/pull/44) ([greenkeeperio-bot](https://github.com/greenkeeperio-bot))
+- Update feathers-commons to version 0.8.0 🚀 [\#43](https://github.com/feathersjs/feathers-memory/pull/43) ([greenkeeperio-bot](https://github.com/greenkeeperio-bot))
+
 ## [v0.8.1](https://github.com/feathersjs/feathers-memory/tree/v0.8.1) (2016-11-02)
 [Full Changelog](https://github.com/feathersjs/feathers-memory/compare/v0.8.0...v0.8.1)
 
