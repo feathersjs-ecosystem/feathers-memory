@@ -76,10 +76,6 @@ class Service {
     let id = data[this._id] || this._uId++;
     let current = _.extend({}, data, { [this._id]: id });
 
-    if (this.store[id]) {
-      return Promise.reject(new errors.Conflict(`A record with id: ${id} already exists`));
-    }
-
     return Promise.resolve((this.store[id] = current))
       .then(select(params, this.id));
   }
