@@ -1,5 +1,12 @@
 # Change Log
 
+## [v1.0.1](https://github.com/feathersjs/feathers-memory/tree/v1.0.1) (2016-11-15)
+[Full Changelog](https://github.com/feathersjs/feathers-memory/compare/v1.0.0...v1.0.1)
+
+**Merged pull requests:**
+
+- feathers-service-tests@0.9.1 breaks build 🚨 [\#45](https://github.com/feathersjs/feathers-memory/pull/45) ([greenkeeperio-bot](https://github.com/greenkeeperio-bot))
+
 ## [v1.0.0](https://github.com/feathersjs/feathers-memory/tree/v1.0.0) (2016-11-11)
 [Full Changelog](https://github.com/feathersjs/feathers-memory/compare/v0.8.1...v1.0.0)
 
