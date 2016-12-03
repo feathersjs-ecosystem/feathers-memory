@@ -30,11 +30,11 @@ Please refer to the [Feathers database adapter documentation](http://docs.feathe
 Here is an example of a Feathers server with a `messages` in-memory service that supports pagination:
 
 ```js
-var feathers = require('feathers');
-var bodyParser = require('body-parser');
-var rest = require('feathers-rest');
-var socketio = require('feathers-socketio');
-var memory from 'feathers-memory';
+const feathers = require('feathers');
+const bodyParser = require('body-parser');
+const rest = require('feathers-rest');
+const socketio = require('feathers-socketio');
+const memory = require('feathers-memory');
 
 // Create a feathers instance.
 const app = feathers()
@@ -65,7 +65,7 @@ app.service('messages').create({
 });
 
 // Start the server.
-var port = 3030;
+const port = 3030;
 
 app.listen(port, function() {
   console.log(`Feathers server listening on port ${port}`);
