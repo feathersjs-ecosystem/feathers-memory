@@ -10,6 +10,8 @@ class Service {
     this._uId = options.startId || 0;
     this.store = options.store || {};
     this.events = options.events || [];
+    this._matcher = options.matcher || matcher;
+    this._sorter = options.sorter || sorter;
   }
 
   extend (obj) {
@@ -20,13 +22,12 @@ class Service {
   // a pagination object
   _find (params, getFilter = filter) {
     const { query, filters } = getFilter(params.query || {});
-
-    let values = _.values(this.store).filter(matcher(query));
+    let values = _.values(this.store).filter(this._matcher(query));
 
     const total = values.length;
 
     if (filters.$sort) {
-      values.sort(sorter(filters.$sort));
+      values.sort(this._sorter(filters.$sort));
     }
 
     if (filters.$skip) {
