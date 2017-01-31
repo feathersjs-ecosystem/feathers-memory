@@ -1,5 +1,13 @@
 # Change Log
 
+## [v1.1.0](https://github.com/feathersjs/feathers-memory/tree/v1.1.0) (2017-01-31)
+[Full Changelog](https://github.com/feathersjs/feathers-memory/compare/v1.0.1...v1.1.0)
+
+**Merged pull requests:**
+
+- Allow to pass a custom matcher and sorter in the options [\#47](https://github.com/feathersjs/feathers-memory/pull/47) ([daffl](https://github.com/daffl))
+- Change `var` to `const`, fix a mistake with `feathers-memory` requiring [\#46](https://github.com/feathersjs/feathers-memory/pull/46) ([osenvosem](https://github.com/osenvosem))
+
 ## [v1.0.1](https://github.com/feathersjs/feathers-memory/tree/v1.0.1) (2016-11-15)
 [Full Changelog](https://github.com/feathersjs/feathers-memory/compare/v1.0.0...v1.0.1)
 
