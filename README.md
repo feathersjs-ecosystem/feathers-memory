@@ -1,5 +1,7 @@
 # feathers-memory
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/feathersjs/feathers-memory.svg)](https://greenkeeper.io/)
+
 [![Build Status](https://travis-ci.org/feathersjs/feathers-memory.png?branch=master)](https://travis-ci.org/feathersjs/feathers-memory)
 [![Code Climate](https://codeclimate.com/github/feathersjs/feathers-memory/badges/gpa.svg)](https://codeclimate.com/github/feathersjs/feathers-memory)
 [![Test Coverage](https://codeclimate.com/github/feathersjs/feathers-memory/badges/coverage.svg)](https://codeclimate.com/github/feathersjs/feathers-memory/coverage)
