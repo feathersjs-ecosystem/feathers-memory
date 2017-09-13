@@ -51,7 +51,7 @@ class Service {
       total,
       limit: filters.$limit,
       skip: filters.$skip || 0,
-      data: values.map(select(params, this.id))
+      data: select(params, this.id)(values)
     });
   }
 
