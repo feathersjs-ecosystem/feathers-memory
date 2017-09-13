@@ -1,7 +1,16 @@
 import Proto from 'uberproto';
 import filter from 'feathers-query-filters';
 import errors from 'feathers-errors';
-import { sorter, matcher, select, _ } from 'feathers-commons';
+import cloneDeep from 'clone-deep';
+import { sorter, matcher, select as baseSelect, _ } from 'feathers-commons';
+
+const select = (...args) => {
+  const base = baseSelect(...args);
+
+  return function (result) {
+    return base(cloneDeep(result));
+  };
+};
 
 class Service {
   constructor (options = {}) {
@@ -38,15 +47,11 @@ class Service {
       values = values.slice(0, filters.$limit);
     }
 
-    if (filters.$select) {
-      values = values.map(value => _.pick(value, ...filters.$select));
-    }
-
     return Promise.resolve({
       total,
       limit: filters.$limit,
       skip: filters.$skip || 0,
-      data: values
+      data: values.map(select(params, this.id))
     });
   }
 
@@ -64,7 +69,8 @@ class Service {
 
   get (id, params) {
     if (id in this.store) {
-      return Promise.resolve(this.store[id]).then(select(params, this.id));
+      return Promise.resolve(this.store[id])
+        .then(select(params, this.id));
     }
 
     return Promise.reject(
