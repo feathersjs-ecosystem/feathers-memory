@@ -31,6 +31,7 @@ class Service {
   // a pagination object
   _find (params, getFilter = filter) {
     const { query, filters } = getFilter(params.query || {});
+    const map = select(params, this.id);
     let values = _.values(this.store).filter(this._matcher(query));
 
     const total = values.length;
@@ -51,7 +52,7 @@ class Service {
       total,
       limit: filters.$limit,
       skip: filters.$skip || 0,
-      data: select(params, this.id)(values)
+      data: map(values)
     });
   }
 
