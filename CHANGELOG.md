@@ -1,5 +1,8 @@
 # Change Log
 
+## [v1.2.1](https://github.com/feathersjs/feathers-memory/tree/v1.2.1) (2017-09-13)
+[Full Changelog](https://github.com/feathersjs/feathers-memory/compare/v1.2.0...v1.2.1)
+
 ## [v1.2.0](https://github.com/feathersjs/feathers-memory/tree/v1.2.0) (2017-09-13)
 [Full Changelog](https://github.com/feathersjs/feathers-memory/compare/v1.1.0...v1.2.0)
 
