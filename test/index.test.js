@@ -60,6 +60,23 @@ describe('Feathers Memory Service', () => {
     });
   });
 
+  it('does not modify the original data', () => {
+    const people = app.service('people');
+
+    return people.create({
+      name: 'Delete tester',
+      age: 33
+    }).then(person => {
+      delete person.age;
+
+      return people.get(person.id);
+    }).then(person => {
+      assert.equal(person.age, 33);
+
+      return people.remove(person.id);
+    });
+  });
+
   base(app, errors);
   base(app, errors, 'people-customid', 'customid');
 });
