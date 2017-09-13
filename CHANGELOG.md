@@ -1,5 +1,20 @@
 # Change Log
 
+## [v1.2.0](https://github.com/feathersjs/feathers-memory/tree/v1.2.0) (2017-09-13)
+[Full Changelog](https://github.com/feathersjs/feathers-memory/compare/v1.1.0...v1.2.0)
+
+**Closed issues:**
+
+- \[RFE\] An option to set the type of the id field to String [\#54](https://github.com/feathersjs/feathers-memory/issues/54)
+
+**Merged pull requests:**
+
+- Deep clone objects before returning [\#55](https://github.com/feathersjs/feathers-memory/pull/55) ([daffl](https://github.com/daffl))
+- Update feathers-socketio to the latest version 🚀 [\#52](https://github.com/feathersjs/feathers-memory/pull/52) ([greenkeeper[bot]](https://github.com/apps/greenkeeper))
+- Update feathers-service-tests to the latest version 🚀 [\#50](https://github.com/feathersjs/feathers-memory/pull/50) ([greenkeeper[bot]](https://github.com/apps/greenkeeper))
+- Update semistandard to the latest version 🚀 [\#49](https://github.com/feathersjs/feathers-memory/pull/49) ([greenkeeper[bot]](https://github.com/apps/greenkeeper))
+- Update dependencies to enable Greenkeeper 🌴 [\#48](https://github.com/feathersjs/feathers-memory/pull/48) ([greenkeeper[bot]](https://github.com/apps/greenkeeper))
+
 ## [v1.1.0](https://github.com/feathersjs/feathers-memory/tree/v1.1.0) (2017-01-31)
 [Full Changelog](https://github.com/feathersjs/feathers-memory/compare/v1.0.1...v1.1.0)
 
