@@ -13,14 +13,6 @@ const select = (...args) => {
   };
 };
 
-const matcher = query => {
-  return items => {
-    const s = Object.assign({}, query);
-    items = [].concat(items || []);
-    return !!sift(s, items).length;
-  };
-};
-
 class Service {
   constructor (options = {}) {
     this.paginate = options.paginate || {};
@@ -28,7 +20,6 @@ class Service {
     this._uId = options.startId || 0;
     this.store = options.store || {};
     this.events = options.events || [];
-    this._matcher = options.matcher || matcher;
     this._sorter = options.sorter || sorter;
   }
 
@@ -41,7 +32,7 @@ class Service {
   _find (params, getFilter = filter) {
     const { query, filters } = getFilter(params.query || {});
     const map = select(params, this.id);
-    let values = _.values(this.store).filter(this._matcher(query));
+    let values = sift(query, _.values(this.store));
 
     const total = values.length;
 
