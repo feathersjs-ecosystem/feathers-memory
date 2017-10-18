@@ -32,6 +32,25 @@ describe('Feathers Memory Service', () => {
     )
   );
 
+  it('allows to pass custom sorter', () => {
+    let sorterCalled = false;
+
+    app.use('/sorter', memory({
+      sorter () {
+        sorterCalled = true;
+        return function () {
+          return 0;
+        };
+      }
+    }));
+
+    return app.service('sorter').find({
+      query: { $sort: { something: 1 } }
+    }).then(() => {
+      assert.ok(sorterCalled, 'sorter called');
+    });
+  });
+
   it('does not modify the original data', () => {
     const people = app.service('people');
 
