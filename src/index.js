@@ -2,13 +2,22 @@ import Proto from 'uberproto';
 import filter from 'feathers-query-filters';
 import errors from 'feathers-errors';
 import cloneDeep from 'clone-deep';
-import { sorter, matcher, select as baseSelect, _ } from 'feathers-commons';
+import { sorter, select as baseSelect, _ } from 'feathers-commons';
+import sift from 'sift';
 
 const select = (...args) => {
   const base = baseSelect(...args);
 
   return function (result) {
     return base(cloneDeep(result));
+  };
+};
+
+const matcher = query => {
+  return items => {
+    const s = Object.assign({}, query);
+    items = [].concat(items || []);
+    return !!sift(s, items).length;
   };
 };
 
