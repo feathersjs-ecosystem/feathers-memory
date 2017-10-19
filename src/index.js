@@ -2,7 +2,8 @@ import Proto from 'uberproto';
 import filter from 'feathers-query-filters';
 import errors from 'feathers-errors';
 import cloneDeep from 'clone-deep';
-import { sorter, matcher, select as baseSelect, _ } from 'feathers-commons';
+import { sorter, select as baseSelect, _ } from 'feathers-commons';
+import sift from 'sift';
 
 const select = (...args) => {
   const base = baseSelect(...args);
@@ -19,7 +20,7 @@ class Service {
     this._uId = options.startId || 0;
     this.store = options.store || {};
     this.events = options.events || [];
-    this._matcher = options.matcher || matcher;
+    this._matcher = options.matcher;
     this._sorter = options.sorter || sorter;
   }
 
@@ -32,7 +33,13 @@ class Service {
   _find (params, getFilter = filter) {
     const { query, filters } = getFilter(params.query || {});
     const map = select(params, this.id);
-    let values = _.values(this.store).filter(this._matcher(query));
+    let values = _.values(this.store);
+
+    if (this._matcher) {
+      values = values.filter(this._matcher(query));
+    } else {
+      values = sift(query, values);
+    }
 
     const total = values.length;
 

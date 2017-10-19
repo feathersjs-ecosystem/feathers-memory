@@ -49,10 +49,11 @@
     "lib": "lib"
   },
   "dependencies": {
+    "clone-deep": "^1.0.0",
     "feathers-commons": "^0.8.0",
     "feathers-errors": "^2.0.1",
     "feathers-query-filters": "^2.0.0",
-    "clone-deep": "^1.0.0",
+    "sift": "^5.0.0",
     "uberproto": "^1.2.0"
   },
   "devDependencies": {
