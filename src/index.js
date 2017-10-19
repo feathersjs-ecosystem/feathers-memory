@@ -20,6 +20,7 @@ class Service {
     this._uId = options.startId || 0;
     this.store = options.store || {};
     this.events = options.events || [];
+    this._matcher = options.matcher;
     this._sorter = options.sorter || sorter;
   }
 
@@ -32,7 +33,13 @@ class Service {
   _find (params, getFilter = filter) {
     const { query, filters } = getFilter(params.query || {});
     const map = select(params, this.id);
-    let values = sift(query, _.values(this.store));
+    let values = _.values(this.store);
+
+    if (this._matcher) {
+      values = values.filter(this._matcher(query));
+    } else {
+      values = sift(query, values);
+    }
 
     const total = values.length;
 
