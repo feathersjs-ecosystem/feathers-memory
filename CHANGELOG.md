@@ -1,5 +1,13 @@
 # Change Log
 
+## [v1.3.0](https://github.com/feathersjs/feathers-memory/tree/v1.3.0) (2017-10-19)
+[Full Changelog](https://github.com/feathersjs/feathers-memory/compare/v1.2.1...v1.3.0)
+
+**Merged pull requests:**
+
+- Modified matcher to use new sift package [\#57](https://github.com/feathersjs/feathers-memory/pull/57) ([Mattchewone](https://github.com/Mattchewone))
+- Update mocha to the latest version 🚀 [\#56](https://github.com/feathersjs/feathers-memory/pull/56) ([greenkeeper[bot]](https://github.com/apps/greenkeeper))
+
 ## [v1.2.1](https://github.com/feathersjs/feathers-memory/tree/v1.2.1) (2017-09-13)
 [Full Changelog](https://github.com/feathersjs/feathers-memory/compare/v1.2.0...v1.2.1)
 
