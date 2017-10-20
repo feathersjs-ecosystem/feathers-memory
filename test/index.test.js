@@ -77,6 +77,21 @@ describe('Feathers Memory Service', () => {
     });
   });
 
+  it('does not $select the id', () => {
+    const people = app.service('people');
+
+    return people.create({
+      name: 'Tester'
+    }).then(person => people.find({
+      query: {
+        name: 'Tester',
+        $select: ['name']
+      }
+    }).then(person => {
+      assert.deepEqual(person[0], { name: 'Tester' }, 'deepEquals the same');
+    }).then(() => people.remove(person.id)));
+  });
+
   base(app, errors);
   base(app, errors, 'people-customid', 'customid');
 });

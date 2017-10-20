@@ -32,7 +32,7 @@ class Service {
   // a pagination object
   _find (params, getFilter = filter) {
     const { query, filters } = getFilter(params.query || {});
-    const map = select(params, this.id);
+    const map = select(params);
     let values = _.values(this.store);
 
     if (this._matcher) {
