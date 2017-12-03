@@ -1,5 +1,27 @@
 # Change Log
 
+## [v2.0.0](https://github.com/feathersjs-ecosystem/feathers-memory/tree/v2.0.0) (2017-12-03)
+[Full Changelog](https://github.com/feathersjs-ecosystem/feathers-memory/compare/v1.3.1...v2.0.0)
+
+**Merged pull requests:**
+
+- Client build [\#63](https://github.com/feathersjs-ecosystem/feathers-memory/pull/63) ([daffl](https://github.com/daffl))
+- Upgrade to Feathers Buzzard \(v3\) [\#62](https://github.com/feathersjs-ecosystem/feathers-memory/pull/62) ([daffl](https://github.com/daffl))
+- Update to new plugin infrastructure [\#61](https://github.com/feathersjs-ecosystem/feathers-memory/pull/61) ([daffl](https://github.com/daffl))
+- Update clone-deep to the latest version 🚀 [\#60](https://github.com/feathersjs-ecosystem/feathers-memory/pull/60) ([greenkeeper[bot]](https://github.com/apps/greenkeeper))
+
+## [v1.3.1](https://github.com/feathersjs-ecosystem/feathers-memory/tree/v1.3.1) (2017-10-20)
+[Full Changelog](https://github.com/feathersjs-ecosystem/feathers-memory/compare/v1.3.0...v1.3.1)
+
+**Closed issues:**
+
+- Custom $select returning `id` [\#58](https://github.com/feathersjs-ecosystem/feathers-memory/issues/58)
+- Best practice for $search [\#51](https://github.com/feathersjs-ecosystem/feathers-memory/issues/51)
+
+**Merged pull requests:**
+
+- Do not select the id by default [\#59](https://github.com/feathersjs-ecosystem/feathers-memory/pull/59) ([daffl](https://github.com/daffl))
+
 ## [v1.3.0](https://github.com/feathersjs-ecosystem/feathers-memory/tree/v1.3.0) (2017-10-19)
 [Full Changelog](https://github.com/feathersjs-ecosystem/feathers-memory/compare/v1.2.1...v1.3.0)
 
