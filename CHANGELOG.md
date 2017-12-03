@@ -1,227 +1,227 @@
 # Change Log
 
-## [v1.3.0](https://github.com/feathersjs/feathers-memory/tree/v1.3.0) (2017-10-19)
-[Full Changelog](https://github.com/feathersjs/feathers-memory/compare/v1.2.1...v1.3.0)
+## [v1.3.0](https://github.com/feathersjs-ecosystem/feathers-memory/tree/v1.3.0) (2017-10-19)
+[Full Changelog](https://github.com/feathersjs-ecosystem/feathers-memory/compare/v1.2.1...v1.3.0)
 
 **Merged pull requests:**
 
-- Modified matcher to use new sift package [\#57](https://github.com/feathersjs/feathers-memory/pull/57) ([Mattchewone](https://github.com/Mattchewone))
-- Update mocha to the latest version 🚀 [\#56](https://github.com/feathersjs/feathers-memory/pull/56) ([greenkeeper[bot]](https://github.com/apps/greenkeeper))
+- Modified matcher to use new sift package [\#57](https://github.com/feathersjs-ecosystem/feathers-memory/pull/57) ([Mattchewone](https://github.com/Mattchewone))
+- Update mocha to the latest version 🚀 [\#56](https://github.com/feathersjs-ecosystem/feathers-memory/pull/56) ([greenkeeper[bot]](https://github.com/apps/greenkeeper))
 
-## [v1.2.1](https://github.com/feathersjs/feathers-memory/tree/v1.2.1) (2017-09-13)
-[Full Changelog](https://github.com/feathersjs/feathers-memory/compare/v1.2.0...v1.2.1)
+## [v1.2.1](https://github.com/feathersjs-ecosystem/feathers-memory/tree/v1.2.1) (2017-09-13)
+[Full Changelog](https://github.com/feathersjs-ecosystem/feathers-memory/compare/v1.2.0...v1.2.1)
 
-## [v1.2.0](https://github.com/feathersjs/feathers-memory/tree/v1.2.0) (2017-09-13)
-[Full Changelog](https://github.com/feathersjs/feathers-memory/compare/v1.1.0...v1.2.0)
+## [v1.2.0](https://github.com/feathersjs-ecosystem/feathers-memory/tree/v1.2.0) (2017-09-13)
+[Full Changelog](https://github.com/feathersjs-ecosystem/feathers-memory/compare/v1.1.0...v1.2.0)
 
 **Closed issues:**
 
-- \[RFE\] An option to set the type of the id field to String [\#54](https://github.com/feathersjs/feathers-memory/issues/54)
+- \[RFE\] An option to set the type of the id field to String [\#54](https://github.com/feathersjs-ecosystem/feathers-memory/issues/54)
 
 **Merged pull requests:**
 
-- Deep clone objects before returning [\#55](https://github.com/feathersjs/feathers-memory/pull/55) ([daffl](https://github.com/daffl))
-- Update feathers-socketio to the latest version 🚀 [\#52](https://github.com/feathersjs/feathers-memory/pull/52) ([greenkeeper[bot]](https://github.com/apps/greenkeeper))
-- Update feathers-service-tests to the latest version 🚀 [\#50](https://github.com/feathersjs/feathers-memory/pull/50) ([greenkeeper[bot]](https://github.com/apps/greenkeeper))
-- Update semistandard to the latest version 🚀 [\#49](https://github.com/feathersjs/feathers-memory/pull/49) ([greenkeeper[bot]](https://github.com/apps/greenkeeper))
-- Update dependencies to enable Greenkeeper 🌴 [\#48](https://github.com/feathersjs/feathers-memory/pull/48) ([greenkeeper[bot]](https://github.com/apps/greenkeeper))
+- Deep clone objects before returning [\#55](https://github.com/feathersjs-ecosystem/feathers-memory/pull/55) ([daffl](https://github.com/daffl))
+- Update feathers-socketio to the latest version 🚀 [\#52](https://github.com/feathersjs-ecosystem/feathers-memory/pull/52) ([greenkeeper[bot]](https://github.com/apps/greenkeeper))
+- Update feathers-service-tests to the latest version 🚀 [\#50](https://github.com/feathersjs-ecosystem/feathers-memory/pull/50) ([greenkeeper[bot]](https://github.com/apps/greenkeeper))
+- Update semistandard to the latest version 🚀 [\#49](https://github.com/feathersjs-ecosystem/feathers-memory/pull/49) ([greenkeeper[bot]](https://github.com/apps/greenkeeper))
+- Update dependencies to enable Greenkeeper 🌴 [\#48](https://github.com/feathersjs-ecosystem/feathers-memory/pull/48) ([greenkeeper[bot]](https://github.com/apps/greenkeeper))
 
-## [v1.1.0](https://github.com/feathersjs/feathers-memory/tree/v1.1.0) (2017-01-31)
-[Full Changelog](https://github.com/feathersjs/feathers-memory/compare/v1.0.1...v1.1.0)
-
-**Merged pull requests:**
-
-- Allow to pass a custom matcher and sorter in the options [\#47](https://github.com/feathersjs/feathers-memory/pull/47) ([daffl](https://github.com/daffl))
-- Change `var` to `const`, fix a mistake with `feathers-memory` requiring [\#46](https://github.com/feathersjs/feathers-memory/pull/46) ([osenvosem](https://github.com/osenvosem))
-
-## [v1.0.1](https://github.com/feathersjs/feathers-memory/tree/v1.0.1) (2016-11-15)
-[Full Changelog](https://github.com/feathersjs/feathers-memory/compare/v1.0.0...v1.0.1)
+## [v1.1.0](https://github.com/feathersjs-ecosystem/feathers-memory/tree/v1.1.0) (2017-01-31)
+[Full Changelog](https://github.com/feathersjs-ecosystem/feathers-memory/compare/v1.0.1...v1.1.0)
 
 **Merged pull requests:**
 
-- feathers-service-tests@0.9.1 breaks build 🚨 [\#45](https://github.com/feathersjs/feathers-memory/pull/45) ([greenkeeperio-bot](https://github.com/greenkeeperio-bot))
+- Allow to pass a custom matcher and sorter in the options [\#47](https://github.com/feathersjs-ecosystem/feathers-memory/pull/47) ([daffl](https://github.com/daffl))
+- Change `var` to `const`, fix a mistake with `feathers-memory` requiring [\#46](https://github.com/feathersjs-ecosystem/feathers-memory/pull/46) ([osenvosem](https://github.com/osenvosem))
 
-## [v1.0.0](https://github.com/feathersjs/feathers-memory/tree/v1.0.0) (2016-11-11)
-[Full Changelog](https://github.com/feathersjs/feathers-memory/compare/v0.8.1...v1.0.0)
+## [v1.0.1](https://github.com/feathersjs-ecosystem/feathers-memory/tree/v1.0.1) (2016-11-15)
+[Full Changelog](https://github.com/feathersjs-ecosystem/feathers-memory/compare/v1.0.0...v1.0.1)
+
+**Merged pull requests:**
+
+- feathers-service-tests@0.9.1 breaks build 🚨 [\#45](https://github.com/feathersjs-ecosystem/feathers-memory/pull/45) ([greenkeeperio-bot](https://github.com/greenkeeperio-bot))
+
+## [v1.0.0](https://github.com/feathersjs-ecosystem/feathers-memory/tree/v1.0.0) (2016-11-11)
+[Full Changelog](https://github.com/feathersjs-ecosystem/feathers-memory/compare/v0.8.1...v1.0.0)
 
 **Closed issues:**
 
-- Support $select for gets [\#35](https://github.com/feathersjs/feathers-memory/issues/35)
+- Support $select for gets [\#35](https://github.com/feathersjs-ecosystem/feathers-memory/issues/35)
 
 **Merged pull requests:**
 
-- Update feathers-service-tests to version 0.9.0 🚀 [\#44](https://github.com/feathersjs/feathers-memory/pull/44) ([greenkeeperio-bot](https://github.com/greenkeeperio-bot))
-- Update feathers-commons to version 0.8.0 🚀 [\#43](https://github.com/feathersjs/feathers-memory/pull/43) ([greenkeeperio-bot](https://github.com/greenkeeperio-bot))
+- Update feathers-service-tests to version 0.9.0 🚀 [\#44](https://github.com/feathersjs-ecosystem/feathers-memory/pull/44) ([greenkeeperio-bot](https://github.com/greenkeeperio-bot))
+- Update feathers-commons to version 0.8.0 🚀 [\#43](https://github.com/feathersjs-ecosystem/feathers-memory/pull/43) ([greenkeeperio-bot](https://github.com/greenkeeperio-bot))
 
-## [v0.8.1](https://github.com/feathersjs/feathers-memory/tree/v0.8.1) (2016-11-02)
-[Full Changelog](https://github.com/feathersjs/feathers-memory/compare/v0.8.0...v0.8.1)
+## [v0.8.1](https://github.com/feathersjs-ecosystem/feathers-memory/tree/v0.8.1) (2016-11-02)
+[Full Changelog](https://github.com/feathersjs-ecosystem/feathers-memory/compare/v0.8.0...v0.8.1)
 
 **Merged pull requests:**
 
-- fix $select with more than one field [\#42](https://github.com/feathersjs/feathers-memory/pull/42) ([t2t2](https://github.com/t2t2))
-- babel-preset-es2015@6.18.0 breaks build 🚨 [\#41](https://github.com/feathersjs/feathers-memory/pull/41) ([greenkeeperio-bot](https://github.com/greenkeeperio-bot))
-- Two tweaks for clean build and tests on Windows [\#38](https://github.com/feathersjs/feathers-memory/pull/38) ([ghost](https://github.com/ghost))
-- jshint —\> semistandard [\#37](https://github.com/feathersjs/feathers-memory/pull/37) ([marshallswain](https://github.com/marshallswain))
-- adding code coverage reporting [\#36](https://github.com/feathersjs/feathers-memory/pull/36) ([ekryski](https://github.com/ekryski))
-- Update feathers-service-tests to version 0.8.0 🚀 [\#32](https://github.com/feathersjs/feathers-memory/pull/32) ([greenkeeperio-bot](https://github.com/greenkeeperio-bot))
+- fix $select with more than one field [\#42](https://github.com/feathersjs-ecosystem/feathers-memory/pull/42) ([t2t2](https://github.com/t2t2))
+- babel-preset-es2015@6.18.0 breaks build 🚨 [\#41](https://github.com/feathersjs-ecosystem/feathers-memory/pull/41) ([greenkeeperio-bot](https://github.com/greenkeeperio-bot))
+- Two tweaks for clean build and tests on Windows [\#38](https://github.com/feathersjs-ecosystem/feathers-memory/pull/38) ([ghost](https://github.com/ghost))
+- jshint —\> semistandard [\#37](https://github.com/feathersjs-ecosystem/feathers-memory/pull/37) ([marshallswain](https://github.com/marshallswain))
+- adding code coverage reporting [\#36](https://github.com/feathersjs-ecosystem/feathers-memory/pull/36) ([ekryski](https://github.com/ekryski))
+- Update feathers-service-tests to version 0.8.0 🚀 [\#32](https://github.com/feathersjs-ecosystem/feathers-memory/pull/32) ([greenkeeperio-bot](https://github.com/greenkeeperio-bot))
 
-## [v0.8.0](https://github.com/feathersjs/feathers-memory/tree/v0.8.0) (2016-09-08)
-[Full Changelog](https://github.com/feathersjs/feathers-memory/compare/v0.7.5...v0.8.0)
+## [v0.8.0](https://github.com/feathersjs-ecosystem/feathers-memory/tree/v0.8.0) (2016-09-08)
+[Full Changelog](https://github.com/feathersjs-ecosystem/feathers-memory/compare/v0.7.5...v0.8.0)
 
 **Closed issues:**
 
-- Remove object from memory once sent? [\#30](https://github.com/feathersjs/feathers-memory/issues/30)
+- Remove object from memory once sent? [\#30](https://github.com/feathersjs-ecosystem/feathers-memory/issues/30)
 
 **Merged pull requests:**
 
-- Update service tests, id and events option [\#31](https://github.com/feathersjs/feathers-memory/pull/31) ([greenkeeperio-bot](https://github.com/greenkeeperio-bot))
-- Update mocha to version 3.0.0 🚀 [\#29](https://github.com/feathersjs/feathers-memory/pull/29) ([greenkeeperio-bot](https://github.com/greenkeeperio-bot))
+- Update service tests, id and events option [\#31](https://github.com/feathersjs-ecosystem/feathers-memory/pull/31) ([greenkeeperio-bot](https://github.com/greenkeeperio-bot))
+- Update mocha to version 3.0.0 🚀 [\#29](https://github.com/feathersjs-ecosystem/feathers-memory/pull/29) ([greenkeeperio-bot](https://github.com/greenkeeperio-bot))
 
-## [v0.7.5](https://github.com/feathersjs/feathers-memory/tree/v0.7.5) (2016-07-25)
-[Full Changelog](https://github.com/feathersjs/feathers-memory/compare/v0.7.4...v0.7.5)
+## [v0.7.5](https://github.com/feathersjs-ecosystem/feathers-memory/tree/v0.7.5) (2016-07-25)
+[Full Changelog](https://github.com/feathersjs-ecosystem/feathers-memory/compare/v0.7.4...v0.7.5)
 
-## [v0.7.4](https://github.com/feathersjs/feathers-memory/tree/v0.7.4) (2016-07-21)
-[Full Changelog](https://github.com/feathersjs/feathers-memory/compare/v0.7.3...v0.7.4)
-
-**Merged pull requests:**
-
-- Update feathers-query-filters to version 2.0.0 🚀 [\#28](https://github.com/feathersjs/feathers-memory/pull/28) ([greenkeeperio-bot](https://github.com/greenkeeperio-bot))
-
-## [v0.7.3](https://github.com/feathersjs/feathers-memory/tree/v0.7.3) (2016-06-16)
-[Full Changelog](https://github.com/feathersjs/feathers-memory/compare/v0.7.2...v0.7.3)
+## [v0.7.4](https://github.com/feathersjs-ecosystem/feathers-memory/tree/v0.7.4) (2016-07-21)
+[Full Changelog](https://github.com/feathersjs-ecosystem/feathers-memory/compare/v0.7.3...v0.7.4)
 
 **Merged pull requests:**
 
-- Update feathers-service-tests to version 0.6.0 🚀 [\#27](https://github.com/feathersjs/feathers-memory/pull/27) ([greenkeeperio-bot](https://github.com/greenkeeperio-bot))
+- Update feathers-query-filters to version 2.0.0 🚀 [\#28](https://github.com/feathersjs-ecosystem/feathers-memory/pull/28) ([greenkeeperio-bot](https://github.com/greenkeeperio-bot))
 
-## [v0.7.2](https://github.com/feathersjs/feathers-memory/tree/v0.7.2) (2016-06-14)
-[Full Changelog](https://github.com/feathersjs/feathers-memory/compare/v0.7.1...v0.7.2)
+## [v0.7.3](https://github.com/feathersjs-ecosystem/feathers-memory/tree/v0.7.3) (2016-06-16)
+[Full Changelog](https://github.com/feathersjs-ecosystem/feathers-memory/compare/v0.7.2...v0.7.3)
+
+**Merged pull requests:**
+
+- Update feathers-service-tests to version 0.6.0 🚀 [\#27](https://github.com/feathersjs-ecosystem/feathers-memory/pull/27) ([greenkeeperio-bot](https://github.com/greenkeeperio-bot))
+
+## [v0.7.2](https://github.com/feathersjs-ecosystem/feathers-memory/tree/v0.7.2) (2016-06-14)
+[Full Changelog](https://github.com/feathersjs-ecosystem/feathers-memory/compare/v0.7.1...v0.7.2)
 
 **Closed issues:**
 
-- Support $search [\#14](https://github.com/feathersjs/feathers-memory/issues/14)
+- Support $search [\#14](https://github.com/feathersjs-ecosystem/feathers-memory/issues/14)
 
 **Merged pull requests:**
 
-- Use the original id if it can be coerced [\#26](https://github.com/feathersjs/feathers-memory/pull/26) ([daffl](https://github.com/daffl))
-- mocha@2.5.0 breaks build 🚨 [\#25](https://github.com/feathersjs/feathers-memory/pull/25) ([greenkeeperio-bot](https://github.com/greenkeeperio-bot))
-- Update babel-plugin-add-module-exports to version 0.2.0 🚀 [\#24](https://github.com/feathersjs/feathers-memory/pull/24) ([greenkeeperio-bot](https://github.com/greenkeeperio-bot))
+- Use the original id if it can be coerced [\#26](https://github.com/feathersjs-ecosystem/feathers-memory/pull/26) ([daffl](https://github.com/daffl))
+- mocha@2.5.0 breaks build 🚨 [\#25](https://github.com/feathersjs-ecosystem/feathers-memory/pull/25) ([greenkeeperio-bot](https://github.com/greenkeeperio-bot))
+- Update babel-plugin-add-module-exports to version 0.2.0 🚀 [\#24](https://github.com/feathersjs-ecosystem/feathers-memory/pull/24) ([greenkeeperio-bot](https://github.com/greenkeeperio-bot))
 
-## [v0.7.1](https://github.com/feathersjs/feathers-memory/tree/v0.7.1) (2016-04-05)
-[Full Changelog](https://github.com/feathersjs/feathers-memory/compare/v0.7.0...v0.7.1)
+## [v0.7.1](https://github.com/feathersjs-ecosystem/feathers-memory/tree/v0.7.1) (2016-04-05)
+[Full Changelog](https://github.com/feathersjs-ecosystem/feathers-memory/compare/v0.7.0...v0.7.1)
 
-## [v0.7.0](https://github.com/feathersjs/feathers-memory/tree/v0.7.0) (2016-04-04)
-[Full Changelog](https://github.com/feathersjs/feathers-memory/compare/v0.6.3...v0.7.0)
+## [v0.7.0](https://github.com/feathersjs-ecosystem/feathers-memory/tree/v0.7.0) (2016-04-04)
+[Full Changelog](https://github.com/feathersjs-ecosystem/feathers-memory/compare/v0.6.3...v0.7.0)
 
 **Merged pull requests:**
 
-- Move to feathers-commons utilities [\#20](https://github.com/feathersjs/feathers-memory/pull/20) ([daffl](https://github.com/daffl))
+- Move to feathers-commons utilities [\#20](https://github.com/feathersjs-ecosystem/feathers-memory/pull/20) ([daffl](https://github.com/daffl))
 
-## [v0.6.3](https://github.com/feathersjs/feathers-memory/tree/v0.6.3) (2016-02-25)
-[Full Changelog](https://github.com/feathersjs/feathers-memory/compare/v0.6.2...v0.6.3)
+## [v0.6.3](https://github.com/feathersjs-ecosystem/feathers-memory/tree/v0.6.3) (2016-02-25)
+[Full Changelog](https://github.com/feathersjs-ecosystem/feathers-memory/compare/v0.6.2...v0.6.3)
 
 **Closed issues:**
 
-- Upgrade to lodash 4 [\#17](https://github.com/feathersjs/feathers-memory/issues/17)
+- Upgrade to lodash 4 [\#17](https://github.com/feathersjs-ecosystem/feathers-memory/issues/17)
 
 **Merged pull requests:**
 
-- Use individual Lodash methods [\#19](https://github.com/feathersjs/feathers-memory/pull/19) ([daffl](https://github.com/daffl))
+- Use individual Lodash methods [\#19](https://github.com/feathersjs-ecosystem/feathers-memory/pull/19) ([daffl](https://github.com/daffl))
 
-## [v0.6.2](https://github.com/feathersjs/feathers-memory/tree/v0.6.2) (2016-02-24)
-[Full Changelog](https://github.com/feathersjs/feathers-memory/compare/v0.6.1...v0.6.2)
-
-**Merged pull requests:**
-
-- bumping feathers-errors version [\#16](https://github.com/feathersjs/feathers-memory/pull/16) ([ekryski](https://github.com/ekryski))
-
-## [v0.6.1](https://github.com/feathersjs/feathers-memory/tree/v0.6.1) (2016-02-22)
-[Full Changelog](https://github.com/feathersjs/feathers-memory/compare/v0.6.0...v0.6.1)
+## [v0.6.2](https://github.com/feathersjs-ecosystem/feathers-memory/tree/v0.6.2) (2016-02-24)
+[Full Changelog](https://github.com/feathersjs-ecosystem/feathers-memory/compare/v0.6.1...v0.6.2)
 
 **Merged pull requests:**
 
-- Exmaple update [\#15](https://github.com/feathersjs/feathers-memory/pull/15) ([ekryski](https://github.com/ekryski))
+- bumping feathers-errors version [\#16](https://github.com/feathersjs-ecosystem/feathers-memory/pull/16) ([ekryski](https://github.com/ekryski))
 
-## [v0.6.0](https://github.com/feathersjs/feathers-memory/tree/v0.6.0) (2016-01-30)
-[Full Changelog](https://github.com/feathersjs/feathers-memory/compare/v0.5.3...v0.6.0)
-
-**Merged pull requests:**
-
-- Use internal methods instead of service methods directly [\#13](https://github.com/feathersjs/feathers-memory/pull/13) ([daffl](https://github.com/daffl))
-
-## [v0.5.3](https://github.com/feathersjs/feathers-memory/tree/v0.5.3) (2016-01-23)
-[Full Changelog](https://github.com/feathersjs/feathers-memory/compare/v0.5.2...v0.5.3)
-
-## [v0.5.2](https://github.com/feathersjs/feathers-memory/tree/v0.5.2) (2016-01-23)
-[Full Changelog](https://github.com/feathersjs/feathers-memory/compare/v0.5.1...v0.5.2)
+## [v0.6.1](https://github.com/feathersjs-ecosystem/feathers-memory/tree/v0.6.1) (2016-02-22)
+[Full Changelog](https://github.com/feathersjs-ecosystem/feathers-memory/compare/v0.6.0...v0.6.1)
 
 **Merged pull requests:**
 
-- Adding nsp check [\#12](https://github.com/feathersjs/feathers-memory/pull/12) ([marshallswain](https://github.com/marshallswain))
+- Exmaple update [\#15](https://github.com/feathersjs-ecosystem/feathers-memory/pull/15) ([ekryski](https://github.com/ekryski))
 
-## [v0.5.1](https://github.com/feathersjs/feathers-memory/tree/v0.5.1) (2015-12-19)
-[Full Changelog](https://github.com/feathersjs/feathers-memory/compare/v0.5.0...v0.5.1)
-
-## [v0.5.0](https://github.com/feathersjs/feathers-memory/tree/v0.5.0) (2015-12-03)
-[Full Changelog](https://github.com/feathersjs/feathers-memory/compare/v0.4.1...v0.5.0)
-
-## [v0.4.1](https://github.com/feathersjs/feathers-memory/tree/v0.4.1) (2015-12-03)
-[Full Changelog](https://github.com/feathersjs/feathers-memory/compare/v0.4.0...v0.4.1)
+## [v0.6.0](https://github.com/feathersjs-ecosystem/feathers-memory/tree/v0.6.0) (2016-01-30)
+[Full Changelog](https://github.com/feathersjs-ecosystem/feathers-memory/compare/v0.5.3...v0.6.0)
 
 **Merged pull requests:**
 
-- Use ES6 classes, Promises and support pagination [\#11](https://github.com/feathersjs/feathers-memory/pull/11) ([daffl](https://github.com/daffl))
+- Use internal methods instead of service methods directly [\#13](https://github.com/feathersjs-ecosystem/feathers-memory/pull/13) ([daffl](https://github.com/daffl))
 
-## [v0.4.0](https://github.com/feathersjs/feathers-memory/tree/v0.4.0) (2015-11-07)
-[Full Changelog](https://github.com/feathersjs/feathers-memory/compare/0.3.4...v0.4.0)
+## [v0.5.3](https://github.com/feathersjs-ecosystem/feathers-memory/tree/v0.5.3) (2016-01-23)
+[Full Changelog](https://github.com/feathersjs-ecosystem/feathers-memory/compare/v0.5.2...v0.5.3)
+
+## [v0.5.2](https://github.com/feathersjs-ecosystem/feathers-memory/tree/v0.5.2) (2016-01-23)
+[Full Changelog](https://github.com/feathersjs-ecosystem/feathers-memory/compare/v0.5.1...v0.5.2)
+
+**Merged pull requests:**
+
+- Adding nsp check [\#12](https://github.com/feathersjs-ecosystem/feathers-memory/pull/12) ([marshallswain](https://github.com/marshallswain))
+
+## [v0.5.1](https://github.com/feathersjs-ecosystem/feathers-memory/tree/v0.5.1) (2015-12-19)
+[Full Changelog](https://github.com/feathersjs-ecosystem/feathers-memory/compare/v0.5.0...v0.5.1)
+
+## [v0.5.0](https://github.com/feathersjs-ecosystem/feathers-memory/tree/v0.5.0) (2015-12-03)
+[Full Changelog](https://github.com/feathersjs-ecosystem/feathers-memory/compare/v0.4.1...v0.5.0)
+
+## [v0.4.1](https://github.com/feathersjs-ecosystem/feathers-memory/tree/v0.4.1) (2015-12-03)
+[Full Changelog](https://github.com/feathersjs-ecosystem/feathers-memory/compare/v0.4.0...v0.4.1)
+
+**Merged pull requests:**
+
+- Use ES6 classes, Promises and support pagination [\#11](https://github.com/feathersjs-ecosystem/feathers-memory/pull/11) ([daffl](https://github.com/daffl))
+
+## [v0.4.0](https://github.com/feathersjs-ecosystem/feathers-memory/tree/v0.4.0) (2015-11-07)
+[Full Changelog](https://github.com/feathersjs-ecosystem/feathers-memory/compare/0.3.4...v0.4.0)
 
 **Closed issues:**
 
-- How properly append values to an existing memory element [\#9](https://github.com/feathersjs/feathers-memory/issues/9)
-- how to initialize memory on app startup [\#8](https://github.com/feathersjs/feathers-memory/issues/8)
-- Add query-filter support [\#7](https://github.com/feathersjs/feathers-memory/issues/7)
-- Remove sorting and other processing from core service [\#4](https://github.com/feathersjs/feathers-memory/issues/4)
+- How properly append values to an existing memory element [\#9](https://github.com/feathersjs-ecosystem/feathers-memory/issues/9)
+- how to initialize memory on app startup [\#8](https://github.com/feathersjs-ecosystem/feathers-memory/issues/8)
+- Add query-filter support [\#7](https://github.com/feathersjs-ecosystem/feathers-memory/issues/7)
+- Remove sorting and other processing from core service [\#4](https://github.com/feathersjs-ecosystem/feathers-memory/issues/4)
 
 **Merged pull requests:**
 
-- Migrate to ES6 plugin infrastructure and shared feathers-service-tests [\#10](https://github.com/feathersjs/feathers-memory/pull/10) ([daffl](https://github.com/daffl))
-- Added support for simple query in find [\#6](https://github.com/feathersjs/feathers-memory/pull/6) ([ruimgoncalves](https://github.com/ruimgoncalves))
+- Migrate to ES6 plugin infrastructure and shared feathers-service-tests [\#10](https://github.com/feathersjs-ecosystem/feathers-memory/pull/10) ([daffl](https://github.com/daffl))
+- Added support for simple query in find [\#6](https://github.com/feathersjs-ecosystem/feathers-memory/pull/6) ([ruimgoncalves](https://github.com/ruimgoncalves))
 
-## [0.3.4](https://github.com/feathersjs/feathers-memory/tree/0.3.4) (2014-09-25)
-[Full Changelog](https://github.com/feathersjs/feathers-memory/compare/0.3.3...0.3.4)
-
-**Closed issues:**
-
-- Query and persisting Data [\#5](https://github.com/feathersjs/feathers-memory/issues/5)
-
-## [0.3.3](https://github.com/feathersjs/feathers-memory/tree/0.3.3) (2014-06-13)
-[Full Changelog](https://github.com/feathersjs/feathers-memory/compare/0.3.2...0.3.3)
-
-## [0.3.2](https://github.com/feathersjs/feathers-memory/tree/0.3.2) (2014-06-13)
-[Full Changelog](https://github.com/feathersjs/feathers-memory/compare/0.3.1...0.3.2)
-
-## [0.3.1](https://github.com/feathersjs/feathers-memory/tree/0.3.1) (2014-06-13)
-[Full Changelog](https://github.com/feathersjs/feathers-memory/compare/0.3.0...0.3.1)
+## [0.3.4](https://github.com/feathersjs-ecosystem/feathers-memory/tree/0.3.4) (2014-09-25)
+[Full Changelog](https://github.com/feathersjs-ecosystem/feathers-memory/compare/0.3.3...0.3.4)
 
 **Closed issues:**
 
-- Fix peer dependency [\#3](https://github.com/feathersjs/feathers-memory/issues/3)
-- Should support `patch` service method [\#2](https://github.com/feathersjs/feathers-memory/issues/2)
-- Need to return proper errors [\#1](https://github.com/feathersjs/feathers-memory/issues/1)
+- Query and persisting Data [\#5](https://github.com/feathersjs-ecosystem/feathers-memory/issues/5)
 
-## [0.3.0](https://github.com/feathersjs/feathers-memory/tree/0.3.0) (2014-06-05)
-[Full Changelog](https://github.com/feathersjs/feathers-memory/compare/0.2.1...0.3.0)
+## [0.3.3](https://github.com/feathersjs-ecosystem/feathers-memory/tree/0.3.3) (2014-06-13)
+[Full Changelog](https://github.com/feathersjs-ecosystem/feathers-memory/compare/0.3.2...0.3.3)
 
-## [0.2.1](https://github.com/feathersjs/feathers-memory/tree/0.2.1) (2014-06-04)
-[Full Changelog](https://github.com/feathersjs/feathers-memory/compare/0.2.0...0.2.1)
+## [0.3.2](https://github.com/feathersjs-ecosystem/feathers-memory/tree/0.3.2) (2014-06-13)
+[Full Changelog](https://github.com/feathersjs-ecosystem/feathers-memory/compare/0.3.1...0.3.2)
 
-## [0.2.0](https://github.com/feathersjs/feathers-memory/tree/0.2.0) (2014-04-22)
-[Full Changelog](https://github.com/feathersjs/feathers-memory/compare/0.1.2...0.2.0)
+## [0.3.1](https://github.com/feathersjs-ecosystem/feathers-memory/tree/0.3.1) (2014-06-13)
+[Full Changelog](https://github.com/feathersjs-ecosystem/feathers-memory/compare/0.3.0...0.3.1)
 
-## [0.1.2](https://github.com/feathersjs/feathers-memory/tree/0.1.2) (2014-04-11)
-[Full Changelog](https://github.com/feathersjs/feathers-memory/compare/0.1.1...0.1.2)
+**Closed issues:**
 
-## [0.1.1](https://github.com/feathersjs/feathers-memory/tree/0.1.1) (2014-04-11)
+- Fix peer dependency [\#3](https://github.com/feathersjs-ecosystem/feathers-memory/issues/3)
+- Should support `patch` service method [\#2](https://github.com/feathersjs-ecosystem/feathers-memory/issues/2)
+- Need to return proper errors [\#1](https://github.com/feathersjs-ecosystem/feathers-memory/issues/1)
+
+## [0.3.0](https://github.com/feathersjs-ecosystem/feathers-memory/tree/0.3.0) (2014-06-05)
+[Full Changelog](https://github.com/feathersjs-ecosystem/feathers-memory/compare/0.2.1...0.3.0)
+
+## [0.2.1](https://github.com/feathersjs-ecosystem/feathers-memory/tree/0.2.1) (2014-06-04)
+[Full Changelog](https://github.com/feathersjs-ecosystem/feathers-memory/compare/0.2.0...0.2.1)
+
+## [0.2.0](https://github.com/feathersjs-ecosystem/feathers-memory/tree/0.2.0) (2014-04-22)
+[Full Changelog](https://github.com/feathersjs-ecosystem/feathers-memory/compare/0.1.2...0.2.0)
+
+## [0.1.2](https://github.com/feathersjs-ecosystem/feathers-memory/tree/0.1.2) (2014-04-11)
+[Full Changelog](https://github.com/feathersjs-ecosystem/feathers-memory/compare/0.1.1...0.1.2)
+
+## [0.1.1](https://github.com/feathersjs-ecosystem/feathers-memory/tree/0.1.1) (2014-04-11)
 
 
 \* *This Change Log was automatically generated by [github_changelog_generator](https://github.com/skywinder/Github-Changelog-Generator)*
