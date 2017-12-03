@@ -1,5 +1,12 @@
 # Change Log
 
+## [v2.1.0](https://github.com/feathersjs-ecosystem/feathers-memory/tree/v2.1.0) (2017-12-03)
+[Full Changelog](https://github.com/feathersjs-ecosystem/feathers-memory/compare/v2.0.0...v2.1.0)
+
+**Merged pull requests:**
+
+- Use namespaced module name for exporting [\#64](https://github.com/feathersjs-ecosystem/feathers-memory/pull/64) ([daffl](https://github.com/daffl))
+
 ## [v2.0.0](https://github.com/feathersjs-ecosystem/feathers-memory/tree/v2.0.0) (2017-12-03)
 [Full Changelog](https://github.com/feathersjs-ecosystem/feathers-memory/compare/v1.3.1...v2.0.0)
 
