@@ -1,6 +1,6 @@
 const { base } = require('feathers-service-tests');
-const errors = require('feathers-errors');
-const feathers = require('feathers');
+const errors = require('@feathersjs/errors');
+const feathers = require('@feathersjs/feathers');
 const assert = require('assert');
 
 const memory = require('../lib');
