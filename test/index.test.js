@@ -1,9 +1,9 @@
-import { base, example } from 'feathers-service-tests';
-import errors from 'feathers-errors';
-import feathers from 'feathers';
-import assert from 'assert';
-import server from './test-app';
-import memory from '../src';
+const { base } = require('feathers-service-tests');
+const errors = require('feathers-errors');
+const feathers = require('feathers');
+const assert = require('assert');
+
+const memory = require('../lib');
 
 describe('Feathers Memory Service', () => {
   const events = [ 'testing' ];
@@ -94,10 +94,4 @@ describe('Feathers Memory Service', () => {
 
   base(app, errors);
   base(app, errors, 'people-customid', 'customid');
-});
-
-describe('Memory service example test', () => {
-  after(done => server.close(() => done()));
-
-  example();
 });
