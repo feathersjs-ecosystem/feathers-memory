@@ -8,7 +8,7 @@ function createConfig (name, isProduction = false) {
   const commons = {
     entry: `./lib/${name}.js`,
     output: {
-      library: 'feathersMemory',
+      library: ['feathers', 'memory'],
       libraryTarget: 'umd',
       path: path.resolve(__dirname, 'dist'),
       filename: `${output}.js`
