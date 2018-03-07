@@ -28,8 +28,9 @@
   "scripts": {
     "add-dist": "npm run clean && npm run build && git add dist/ --force && git commit -am \"Updating dist\"",
     "clean": "shx rm -rf dist/ && shx mkdir -p dist",
-    "build": "npm run clean && npm run webpack",
-    "webpack": "parallel-webpack",
+    "build": "npm run clean && npm run webpack && npm run webpack:production",
+    "webpack": "webpack",
+    "webpack:production": "NODE_ENV=production webpack",
     "publish": "git push origin --tags && npm run changelog && git push origin",
     "changelog": "github_changelog_generator && git add CHANGELOG.md && git commit -am \"Updating changelog\"",
     "release:patch": "npm run add-dist && npm version patch && npm publish",
@@ -66,11 +67,10 @@
     "feathers-service-tests": "^0.10.0",
     "istanbul": "^1.1.0-alpha.1",
     "mocha": "^5.0.0",
-    "parallel-webpack": "^2.2.0",
     "semistandard": "^12.0.0",
     "shx": "^0.2.2",
     "uglifyjs-webpack-plugin": "^1.1.2",
-    "webpack": "^3.9.1",
-    "webpack-merge": "^4.1.1"
+    "webpack": "^4.0.0",
+    "webpack-cli": "^2.0.10"
   }
 }
