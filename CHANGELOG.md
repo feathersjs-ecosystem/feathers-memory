@@ -1,5 +1,19 @@
 # Change Log
 
+## [v2.1.1](https://github.com/feathersjs-ecosystem/feathers-memory/tree/v2.1.1) (2018-03-07)
+[Full Changelog](https://github.com/feathersjs-ecosystem/feathers-memory/compare/v2.1.0...v2.1.1)
+
+**Closed issues:**
+
+- Why are all the data deleted after the server is rebooted? [\#68](https://github.com/feathersjs-ecosystem/feathers-memory/issues/68)
+
+**Merged pull requests:**
+
+- Update webpack to the latest version 🚀 [\#69](https://github.com/feathersjs-ecosystem/feathers-memory/pull/69) ([greenkeeper[bot]](https://github.com/apps/greenkeeper))
+- Update clone-deep to the latest version 🚀 [\#67](https://github.com/feathersjs-ecosystem/feathers-memory/pull/67) ([greenkeeper[bot]](https://github.com/apps/greenkeeper))
+- Update mocha to the latest version 🚀 [\#66](https://github.com/feathersjs-ecosystem/feathers-memory/pull/66) ([greenkeeper[bot]](https://github.com/apps/greenkeeper))
+- Update semistandard to the latest version 🚀 [\#65](https://github.com/feathersjs-ecosystem/feathers-memory/pull/65) ([greenkeeper[bot]](https://github.com/apps/greenkeeper))
+
 ## [v2.1.0](https://github.com/feathersjs-ecosystem/feathers-memory/tree/v2.1.0) (2017-12-03)
 [Full Changelog](https://github.com/feathersjs-ecosystem/feathers-memory/compare/v2.0.0...v2.1.0)
 
