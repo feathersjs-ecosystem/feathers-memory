@@ -9,5 +9,6 @@ env:
 before_install:
   - npm install -g npm@latest greenkeeper-lockfile@1
   - greenkeeper-lockfile-update
+install: npm install
 after_script: 
   - greenkeeper-lockfile-upload
