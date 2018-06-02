@@ -6,6 +6,5 @@ node_js:
 env:
   global:
     secure: DkeN9C1jKinDND1gcu1VGLgbS7LAcZP+U7j6/apzDLYDRPZkDRKsuw+GJ3pXbIL985LRn1DJK6zuRbsAJ5KeYaCUJk0DCXSbjeF8+qlqQtwcW71/n7kw779fqINJtV6rKd+Otysd16PYkCwZp4316n4n95Gsle+HtaJE1yiUAtU=
-before_install: npm install -g npm@latest greenkeeper-lockfile@1
-before_script: greenkeeper-lockfile-update
+before_install: npm install -g npm@latest greenkeeper-lockfile@1 && greenkeeper-lockfile-update
 after_script: greenkeeper-lockfile-upload
