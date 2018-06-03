@@ -54,7 +54,7 @@
     "@feathersjs/errors": "^3.2.0",
     "clone-deep": "^4.0.0",
     "sift": "^5.0.0",
-    "uberproto": "^1.2.0"
+    "uberproto": "^2.0.0"
   },
   "devDependencies": {
     "@feathersjs/express": "^1.1.2",
