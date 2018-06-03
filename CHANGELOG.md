@@ -1,5 +1,13 @@
 # Change Log
 
+## [v2.1.2](https://github.com/feathersjs-ecosystem/feathers-memory/tree/v2.1.2) (2018-06-03)
+[Full Changelog](https://github.com/feathersjs-ecosystem/feathers-memory/compare/v2.1.1...v2.1.2)
+
+**Merged pull requests:**
+
+- Update uberproto to the latest version 🚀 [\#72](https://github.com/feathersjs-ecosystem/feathers-memory/pull/72) ([greenkeeper[bot]](https://github.com/apps/greenkeeper))
+- Update clone-deep to the latest version 🚀 [\#70](https://github.com/feathersjs-ecosystem/feathers-memory/pull/70) ([greenkeeper[bot]](https://github.com/apps/greenkeeper))
+
 ## [v2.1.1](https://github.com/feathersjs-ecosystem/feathers-memory/tree/v2.1.1) (2018-03-07)
 [Full Changelog](https://github.com/feathersjs-ecosystem/feathers-memory/compare/v2.1.0...v2.1.1)
 
