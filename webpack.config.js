@@ -16,7 +16,7 @@ const config = {
   module: {
     rules: [{
       test: /\.js/,
-      exclude: /node_modules\/(?!(@feathersjs))/,
+      exclude: /node_modules\/(?!(@feathersjs|feathers))/,
       loader: 'babel-loader'
     }]
   },
