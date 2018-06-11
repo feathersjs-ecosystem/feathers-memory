@@ -1,5 +1,17 @@
 # Change Log
 
+## [v2.1.3](https://github.com/feathersjs-ecosystem/feathers-memory/tree/v2.1.3) (2018-06-11)
+[Full Changelog](https://github.com/feathersjs-ecosystem/feathers-memory/compare/v2.1.2...v2.1.3)
+
+**Closed issues:**
+
+- Use with create-react-app [\#74](https://github.com/feathersjs-ecosystem/feathers-memory/issues/74)
+
+**Merged pull requests:**
+
+- Transpile all Feathers modules for distributable [\#75](https://github.com/feathersjs-ecosystem/feathers-memory/pull/75) ([saiichihashimoto](https://github.com/saiichihashimoto))
+- Update shx to the latest version 🚀 [\#73](https://github.com/feathersjs-ecosystem/feathers-memory/pull/73) ([greenkeeper[bot]](https://github.com/apps/greenkeeper))
+
 ## [v2.1.2](https://github.com/feathersjs-ecosystem/feathers-memory/tree/v2.1.2) (2018-06-03)
 [Full Changelog](https://github.com/feathersjs-ecosystem/feathers-memory/compare/v2.1.1...v2.1.2)
 
