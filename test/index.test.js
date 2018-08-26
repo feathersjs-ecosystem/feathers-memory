@@ -28,7 +28,7 @@ describe('Feathers Memory Service', () => {
           assert.equal(typeof updatedPerson.id, 'number')
         )
         .then(() => app.service('people')
-        .remove(person.id.toString()))
+          .remove(person.id.toString()))
     )
   );
 
