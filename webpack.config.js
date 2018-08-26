@@ -22,7 +22,7 @@ const config = {
   plugins: []
 };
 
-if(!isProduction) {
+if (!isProduction) {
   Object.assign(config, {
     mode: 'development',
     devtool: 'source-map'
