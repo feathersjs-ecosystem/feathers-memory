@@ -1,5 +1,18 @@
 # Change Log
 
+## [v2.2.0](https://github.com/feathersjs-ecosystem/feathers-memory/tree/v2.2.0) (2018-08-26)
+[Full Changelog](https://github.com/feathersjs-ecosystem/feathers-memory/compare/v2.1.3...v2.2.0)
+
+**Closed issues:**
+
+- Previously functional batch service no longer works when creating in-memory service [\#77](https://github.com/feathersjs-ecosystem/feathers-memory/issues/77)
+
+**Merged pull requests:**
+
+- Remove cloneDeep dependency [\#80](https://github.com/feathersjs-ecosystem/feathers-memory/pull/80) ([daffl](https://github.com/daffl))
+- Fix cloning of instances [\#79](https://github.com/feathersjs-ecosystem/feathers-memory/pull/79) ([homerjam](https://github.com/homerjam))
+- Update sift to the latest version 🚀 [\#76](https://github.com/feathersjs-ecosystem/feathers-memory/pull/76) ([greenkeeper[bot]](https://github.com/apps/greenkeeper))
+
 ## [v2.1.3](https://github.com/feathersjs-ecosystem/feathers-memory/tree/v2.1.3) (2018-06-11)
 [Full Changelog](https://github.com/feathersjs-ecosystem/feathers-memory/compare/v2.1.2...v2.1.3)
 
