@@ -56,12 +56,12 @@
     "uberproto": "^2.0.1"
   },
   "devDependencies": {
+    "@babel/core": "^7.0.0",
+    "@babel/preset-env": "^7.0.0",
     "@feathersjs/express": "^1.1.2",
     "@feathersjs/feathers": "^3.0.1",
     "@feathersjs/socketio": "^3.0.1",
-    "babel-core": "^6.26.0",
-    "babel-loader": "^7.1.2",
-    "babel-preset-es2015": "^6.24.1",
+    "babel-loader": "^8.0.0",
     "body-parser": "^1.14.1",
     "feathers-service-tests": "^0.10.0",
     "istanbul": "^1.1.0-alpha.1",
