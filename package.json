@@ -41,7 +41,10 @@
     "coverage": "istanbul cover node_modules/mocha/bin/_mocha -- --opts mocha.opts",
     "test": "npm run lint && npm run coverage"
   },
-  "browserslist": [ "last 2 versions", "IE 10" ],
+  "browserslist": [
+    "last 2 versions",
+    "IE 10"
+  ],
   "semistandard": {
     "env": [
       "mocha"
@@ -51,7 +54,7 @@
     "lib": "lib"
   },
   "dependencies": {
-    "@feathersjs/commons": "^3.0.1",
+    "@feathersjs/commons": "^1.4.4",
     "@feathersjs/errors": "^3.3.3",
     "sift": "^6.0.0",
     "uberproto": "^2.0.4"
