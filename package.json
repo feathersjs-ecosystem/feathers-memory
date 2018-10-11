@@ -56,7 +56,7 @@
   "dependencies": {
     "@feathersjs/commons": "^1.4.4",
     "@feathersjs/errors": "^3.3.3",
-    "sift": "^6.0.0",
+    "sift": "^7.0.0",
     "uberproto": "^2.0.4"
   },
   "devDependencies": {
