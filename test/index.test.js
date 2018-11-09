@@ -14,7 +14,7 @@ describe('Feathers Memory Service', () => {
     }));
 
   it('is CommonJS compatible', () =>
-    assert.equal(typeof require('../lib'), 'function')
+    assert.strictEqual(typeof require('../lib'), 'function')
   );
 
   it('update with string id works', () =>
@@ -25,7 +25,7 @@ describe('Feathers Memory Service', () => {
       app.service('people')
         .update(person.id.toString(), person)
         .then(updatedPerson =>
-          assert.equal(typeof updatedPerson.id, 'number')
+          assert.strictEqual(typeof updatedPerson.id, 'number')
         )
         .then(() => app.service('people')
           .remove(person.id.toString()))
@@ -71,7 +71,7 @@ describe('Feathers Memory Service', () => {
 
       return people.get(person.id);
     }).then(person => {
-      assert.equal(person.age, 33);
+      assert.strictEqual(person.age, 33);
 
       return people.remove(person.id);
     });
@@ -88,7 +88,7 @@ describe('Feathers Memory Service', () => {
         $select: ['name']
       }
     }).then(person => {
-      assert.deepEqual(person[0], { name: 'Tester' }, 'deepEquals the same');
+      assert.deepStrictEqual(person[0], { name: 'Tester' }, 'deepEquals the same');
     }).then(() => people.remove(person.id)));
   });
 
