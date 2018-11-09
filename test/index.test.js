@@ -88,7 +88,7 @@ describe('Feathers Memory Service', () => {
         $select: ['name']
       }
     }).then(person => {
-      assert.deepEqual(person[0], { name: 'Tester' }, 'deepEquals the same');
+      assert.deepStrictEqual(person[0], { name: 'Tester' }, 'deepEquals the same');
     }).then(() => people.remove(person.id)));
   });
 
