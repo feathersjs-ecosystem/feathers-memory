@@ -1,5 +1,20 @@
 # Change Log
 
+## [v3.0.0](https://github.com/feathersjs-ecosystem/feathers-memory/tree/v3.0.0) (2018-12-17)
+[Full Changelog](https://github.com/feathersjs-ecosystem/feathers-memory/compare/v2.2.0...v3.0.0)
+
+**Closed issues:**
+
+- An in-range update of webpack is breaking the build 🚨 [\#84](https://github.com/feathersjs-ecosystem/feathers-memory/issues/84)
+- An in-range update of @feathersjs/errors is breaking the build 🚨 [\#83](https://github.com/feathersjs-ecosystem/feathers-memory/issues/83)
+
+**Merged pull requests:**
+
+- Update to @feathersjs/adapter-commons and drop Node 6 [\#88](https://github.com/feathersjs-ecosystem/feathers-memory/pull/88) ([daffl](https://github.com/daffl))
+- Update semistandard to the latest version 🚀 [\#87](https://github.com/feathersjs-ecosystem/feathers-memory/pull/87) ([greenkeeper[bot]](https://github.com/apps/greenkeeper))
+- Update all dependencies and Webpack build [\#85](https://github.com/feathersjs-ecosystem/feathers-memory/pull/85) ([daffl](https://github.com/daffl))
+- Update babel-loader to the latest version 🚀 [\#81](https://github.com/feathersjs-ecosystem/feathers-memory/pull/81) ([greenkeeper[bot]](https://github.com/apps/greenkeeper))
+
 ## [v2.2.0](https://github.com/feathersjs-ecosystem/feathers-memory/tree/v2.2.0) (2018-08-26)
 [Full Changelog](https://github.com/feathersjs-ecosystem/feathers-memory/compare/v2.1.3...v2.2.0)
 
