@@ -1,9 +1,69 @@
-const { base } = require('feathers-service-tests');
+const assert = require('assert');
+const adapterTests = require('@feathersjs/adapter-commons/tests');
 const errors = require('@feathersjs/errors');
 const feathers = require('@feathersjs/feathers');
-const assert = require('assert');
 
 const memory = require('../lib');
+const testSuite = adapterTests([
+  '.options',
+  '.events',
+  '._get',
+  '._find',
+  '._create',
+  '._update',
+  '._patch',
+  '._remove',
+  '.get',
+  '.get + $select',
+  '.get + id + query',
+  '.get + NotFound',
+  '.find',
+  '.remove',
+  '.remove + $select',
+  '.remove + id + query',
+  '.remove + multi',
+  '.update',
+  '.update + $select',
+  '.update + id + query',
+  '.update + NotFound',
+  '.patch',
+  '.patch + $select',
+  '.patch + id + query',
+  '.patch multiple',
+  '.patch multi query',
+  '.patch + NotFound',
+  '.create',
+  '.create + $select',
+  '.create multi',
+  'internal .find',
+  'internal .get',
+  'internal .create',
+  'internal .update',
+  'internal .patch',
+  'internal .remove',
+  '.find + equal',
+  '.find + equal multiple',
+  '.find + $sort',
+  '.find + $sort + string',
+  '.find + $limit',
+  '.find + $limit 0',
+  '.find + $skip',
+  '.find + $select',
+  '.find + $or',
+  '.find + $in',
+  '.find + $nin',
+  '.find + $lt',
+  '.find + $lte',
+  '.find + $gt',
+  '.find + $gte',
+  '.find + $ne',
+  '.find + $gt + $lt + $sort',
+  '.find + $or nested + $sort',
+  '.find + paginate',
+  '.find + paginate + $limit + $skip',
+  '.find + paginate + $limit 0',
+  '.find + paginate + params'
+]);
 
 describe('Feathers Memory Service', () => {
   const events = [ 'testing' ];
@@ -17,22 +77,21 @@ describe('Feathers Memory Service', () => {
     assert.strictEqual(typeof require('../lib'), 'function')
   );
 
-  it('update with string id works', () =>
-    app.service('people').create({
+  it('update with string id works', async () => {
+    const people = app.service('people');
+    const person = await people.create({
       name: 'Tester',
       age: 33
-    }).then(person =>
-      app.service('people')
-        .update(person.id.toString(), person)
-        .then(updatedPerson =>
-          assert.strictEqual(typeof updatedPerson.id, 'number')
-        )
-        .then(() => app.service('people')
-          .remove(person.id.toString()))
-    )
-  );
+    });
 
-  it('allows to pass custom find and sort matcher', () => {
+    const updatedPerson = await people.update(person.id.toString(), person);
+
+    assert.strictEqual(typeof updatedPerson.id, 'number');
+
+    await people.remove(person.id.toString());
+  });
+
+  it('allows to pass custom find and sort matcher', async () => {
     let sorterCalled = false;
     let matcherCalled = false;
 
@@ -52,46 +111,59 @@ describe('Feathers Memory Service', () => {
       }
     }));
 
-    return app.service('matcher').find({
+    await app.service('matcher').find({
       query: { $sort: { something: 1 } }
-    }).then(() => {
-      assert.ok(sorterCalled, 'sorter called');
-      assert.ok(matcherCalled, 'matcher called');
     });
+
+    assert.ok(sorterCalled, 'sorter called');
+    assert.ok(matcherCalled, 'matcher called');
   });
 
-  it('does not modify the original data', () => {
+  it('does not modify the original data', async () => {
     const people = app.service('people');
 
-    return people.create({
+    const person = await people.create({
       name: 'Delete tester',
       age: 33
-    }).then(person => {
-      delete person.age;
-
-      return people.get(person.id);
-    }).then(person => {
-      assert.strictEqual(person.age, 33);
-
-      return people.remove(person.id);
     });
+
+    delete person.age;
+
+    const otherPerson = await people.get(person.id);
+
+    assert.strictEqual(otherPerson.age, 33);
+
+    await people.remove(person.id);
   });
 
-  it('does not $select the id', () => {
+  it('does not $select the id', async () => {
     const people = app.service('people');
-
-    return people.create({
+    const person = await people.create({
       name: 'Tester'
-    }).then(person => people.find({
+    });
+    const results = await people.find({
       query: {
         name: 'Tester',
         $select: ['name']
       }
-    }).then(person => {
-      assert.deepStrictEqual(person[0], { name: 'Tester' }, 'deepEquals the same');
-    }).then(() => people.remove(person.id)));
+    });
+
+    assert.deepStrictEqual(results[0], { name: 'Tester' },
+      'deepEquals the same'
+    );
+
+    await people.remove(person.id);
   });
 
-  base(app, errors);
-  base(app, errors, 'people-customid', 'customid');
+  it('update with null throws error', async () => {
+    try {
+      await app.service('people').update(null, {});
+      throw new Error('Should never get here');
+    } catch (error) {
+      assert.strictEqual(error.message, `You can not replace multiple instances. Did you mean 'patch'?`);
+    }
+  });
+
+  testSuite(app, errors, 'people');
+  testSuite(app, errors, 'people-customid', 'customid');
 });
