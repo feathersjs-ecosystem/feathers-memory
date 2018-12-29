@@ -1,5 +1,12 @@
 # Change Log
 
+## [v3.0.1](https://github.com/feathersjs-ecosystem/feathers-memory/tree/v3.0.1) (2018-12-29)
+[Full Changelog](https://github.com/feathersjs-ecosystem/feathers-memory/compare/v3.0.0...v3.0.1)
+
+**Merged pull requests:**
+
+- Add default params to hook-less methods [\#89](https://github.com/feathersjs-ecosystem/feathers-memory/pull/89) ([daffl](https://github.com/daffl))
+
 ## [v3.0.0](https://github.com/feathersjs-ecosystem/feathers-memory/tree/v3.0.0) (2018-12-17)
 [Full Changelog](https://github.com/feathersjs-ecosystem/feathers-memory/compare/v2.2.0...v3.0.0)
 
