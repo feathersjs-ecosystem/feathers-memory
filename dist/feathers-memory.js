@@ -175,20 +175,24 @@ function (_AdapterService) {
     value: function () {
       var _getEntries = _asyncToGenerator(
       /*#__PURE__*/
-      regeneratorRuntime.mark(function _callee(params) {
-        var _this$filterQuery, query;
+      regeneratorRuntime.mark(function _callee() {
+        var params,
+            _this$filterQuery,
+            query,
+            _args = arguments;
 
         return regeneratorRuntime.wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
+                params = _args.length > 0 && _args[0] !== undefined ? _args[0] : {};
                 _this$filterQuery = this.filterQuery(params), query = _this$filterQuery.query;
                 return _context.abrupt("return", this._find(Object.assign({}, params, {
                   paginate: false,
                   query: query
                 })));
 
-              case 2:
+              case 3:
               case "end":
                 return _context.stop();
             }
@@ -196,7 +200,7 @@ function (_AdapterService) {
         }, _callee, this);
       }));
 
-      function getEntries(_x) {
+      function getEntries() {
         return _getEntries.apply(this, arguments);
       }
 
@@ -207,13 +211,22 @@ function (_AdapterService) {
     value: function () {
       var _find2 = _asyncToGenerator(
       /*#__PURE__*/
-      regeneratorRuntime.mark(function _callee2(params) {
-        var _this$filterQuery2, query, filters, paginate, values, total, result;
+      regeneratorRuntime.mark(function _callee2() {
+        var params,
+            _this$filterQuery2,
+            query,
+            filters,
+            paginate,
+            values,
+            total,
+            result,
+            _args2 = arguments;
 
         return regeneratorRuntime.wrap(function _callee2$(_context2) {
           while (1) {
             switch (_context2.prev = _context2.next) {
               case 0:
+                params = _args2.length > 0 && _args2[0] !== undefined ? _args2[0] : {};
                 _this$filterQuery2 = this.filterQuery(params), query = _this$filterQuery2.query, filters = _this$filterQuery2.filters, paginate = _this$filterQuery2.paginate;
                 values = _.values(this.store).filter(this.options.matcher(query));
                 total = values.length;
@@ -240,16 +253,16 @@ function (_AdapterService) {
                 };
 
                 if (paginate && paginate.default) {
-                  _context2.next = 9;
+                  _context2.next = 10;
                   break;
                 }
 
                 return _context2.abrupt("return", result.data);
 
-              case 9:
+              case 10:
                 return _context2.abrupt("return", result);
 
-              case 10:
+              case 11:
               case "end":
                 return _context2.stop();
             }
@@ -257,7 +270,7 @@ function (_AdapterService) {
         }, _callee2, this);
       }));
 
-      function _find(_x2) {
+      function _find() {
         return _find2.apply(this, arguments);
       }
 
@@ -307,7 +320,7 @@ function (_AdapterService) {
         }, _callee3, this);
       }));
 
-      function _get(_x3) {
+      function _get(_x) {
         return _get2.apply(this, arguments);
       }
 
@@ -319,16 +332,22 @@ function (_AdapterService) {
     value: function () {
       var _create2 = _asyncToGenerator(
       /*#__PURE__*/
-      regeneratorRuntime.mark(function _callee4(data, params) {
+      regeneratorRuntime.mark(function _callee4(data) {
         var _this2 = this;
 
-        var id, current, result;
+        var params,
+            id,
+            current,
+            result,
+            _args4 = arguments;
         return regeneratorRuntime.wrap(function _callee4$(_context4) {
           while (1) {
             switch (_context4.prev = _context4.next) {
               case 0:
+                params = _args4.length > 1 && _args4[1] !== undefined ? _args4[1] : {};
+
                 if (!Array.isArray(data)) {
-                  _context4.next = 2;
+                  _context4.next = 3;
                   break;
                 }
 
@@ -336,13 +355,13 @@ function (_AdapterService) {
                   return _this2._create(current, params);
                 })));
 
-              case 2:
+              case 3:
                 id = data[this.id] || this._uId++;
                 current = _.extend({}, data, _defineProperty({}, this.id, id));
                 result = this.store[id] = current;
                 return _context4.abrupt("return", _select(result, params, this.id));
 
-              case 6:
+              case 7:
               case "end":
                 return _context4.stop();
             }
@@ -350,7 +369,7 @@ function (_AdapterService) {
         }, _callee4, this);
       }));
 
-      function _create(_x4, _x5) {
+      function _create(_x2) {
         return _create2.apply(this, arguments);
       }
 
@@ -361,16 +380,20 @@ function (_AdapterService) {
     value: function () {
       var _update2 = _asyncToGenerator(
       /*#__PURE__*/
-      regeneratorRuntime.mark(function _callee5(id, data, params) {
-        var oldEntry, oldId;
+      regeneratorRuntime.mark(function _callee5(id, data) {
+        var params,
+            oldEntry,
+            oldId,
+            _args5 = arguments;
         return regeneratorRuntime.wrap(function _callee5$(_context5) {
           while (1) {
             switch (_context5.prev = _context5.next) {
               case 0:
-                _context5.next = 2;
+                params = _args5.length > 2 && _args5[2] !== undefined ? _args5[2] : {};
+                _context5.next = 3;
                 return this._get(id);
 
-              case 2:
+              case 3:
                 oldEntry = _context5.sent;
                 // We don't want our id to change type if it can be coerced
                 oldId = oldEntry[this.id];
@@ -379,7 +402,7 @@ function (_AdapterService) {
                 this.store[id] = _.extend({}, data, _defineProperty({}, this.id, id));
                 return _context5.abrupt("return", this._get(id, params));
 
-              case 7:
+              case 8:
               case "end":
                 return _context5.stop();
             }
@@ -387,7 +410,7 @@ function (_AdapterService) {
         }, _callee5, this);
       }));
 
-      function _update(_x6, _x7, _x8) {
+      function _update(_x3, _x4) {
         return _update2.apply(this, arguments);
       }
 
@@ -398,38 +421,42 @@ function (_AdapterService) {
     value: function () {
       var _patch2 = _asyncToGenerator(
       /*#__PURE__*/
-      regeneratorRuntime.mark(function _callee6(id, data, params) {
+      regeneratorRuntime.mark(function _callee6(id, data) {
         var _this3 = this;
 
-        var entries;
+        var params,
+            entries,
+            _args6 = arguments;
         return regeneratorRuntime.wrap(function _callee6$(_context6) {
           while (1) {
             switch (_context6.prev = _context6.next) {
               case 0:
+                params = _args6.length > 2 && _args6[2] !== undefined ? _args6[2] : {};
+
                 if (!(id === null)) {
-                  _context6.next = 5;
+                  _context6.next = 6;
                   break;
                 }
 
-                _context6.next = 3;
+                _context6.next = 4;
                 return this.getEntries(params);
 
-              case 3:
+              case 4:
                 entries = _context6.sent;
                 return _context6.abrupt("return", Promise.all(entries.map(function (current) {
                   return _this3._patch(current[_this3.id], data, params);
                 })));
 
-              case 5:
-                _context6.next = 7;
+              case 6:
+                _context6.next = 8;
                 return this._get(id, params);
 
-              case 7:
+              case 8:
                 // Will throw an error if not found
                 this.store[id] = _.extend(this.store[id], _.omit(data, this.id));
                 return _context6.abrupt("return", this._get(id, params));
 
-              case 9:
+              case 10:
               case "end":
                 return _context6.stop();
             }
@@ -437,7 +464,7 @@ function (_AdapterService) {
         }, _callee6, this);
       }));
 
-      function _patch(_x9, _x10, _x11) {
+      function _patch(_x5, _x6) {
         return _patch2.apply(this, arguments);
       }
 
@@ -449,38 +476,43 @@ function (_AdapterService) {
     value: function () {
       var _remove2 = _asyncToGenerator(
       /*#__PURE__*/
-      regeneratorRuntime.mark(function _callee7(id, params) {
+      regeneratorRuntime.mark(function _callee7(id) {
         var _this4 = this;
 
-        var entries, entry;
+        var params,
+            entries,
+            entry,
+            _args7 = arguments;
         return regeneratorRuntime.wrap(function _callee7$(_context7) {
           while (1) {
             switch (_context7.prev = _context7.next) {
               case 0:
+                params = _args7.length > 1 && _args7[1] !== undefined ? _args7[1] : {};
+
                 if (!(id === null)) {
-                  _context7.next = 5;
+                  _context7.next = 6;
                   break;
                 }
 
-                _context7.next = 3;
+                _context7.next = 4;
                 return this.getEntries(params);
 
-              case 3:
+              case 4:
                 entries = _context7.sent;
                 return _context7.abrupt("return", Promise.all(entries.map(function (current) {
                   return _this4._remove(current[_this4.id], params);
                 })));
 
-              case 5:
-                _context7.next = 7;
+              case 6:
+                _context7.next = 8;
                 return this._get(id, params);
 
-              case 7:
+              case 8:
                 entry = _context7.sent;
                 delete this.store[id];
                 return _context7.abrupt("return", entry);
 
-              case 10:
+              case 11:
               case "end":
                 return _context7.stop();
             }
@@ -488,7 +520,7 @@ function (_AdapterService) {
         }, _callee7, this);
       }));
 
-      function _remove(_x12, _x13) {
+      function _remove(_x7) {
         return _remove2.apply(this, arguments);
       }
 
