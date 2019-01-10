@@ -56,25 +56,25 @@
   "dependencies": {
     "@feathersjs/adapter-commons": "^2.0.0",
     "@feathersjs/commons": "^4.0.0",
-    "@feathersjs/errors": "^3.3.4",
+    "@feathersjs/errors": "^3.3.6",
     "sift": "^7.0.1"
   },
   "devDependencies": {
-    "@feathersjs/adapter-tests": "^1.0.0",
-    "@babel/core": "^7.2.0",
-    "@babel/preset-env": "^7.2.0",
-    "@feathersjs/express": "^1.2.7",
-    "@feathersjs/feathers": "^3.2.3",
-    "@feathersjs/socketio": "^3.2.7",
-    "babel-loader": "^8.0.4",
+    "@feathersjs/adapter-tests": "^1.0.1",
+    "@babel/core": "^7.2.2",
+    "@babel/preset-env": "^7.2.3",
+    "@feathersjs/express": "^1.3.1",
+    "@feathersjs/feathers": "^3.3.1",
+    "@feathersjs/socketio": "^3.2.9",
+    "babel-loader": "^8.0.5",
     "body-parser": "^1.18.3",
     "istanbul": "^1.1.0-alpha.1",
     "mocha": "^5.2.0",
     "semistandard": "^13.0.1",
     "shx": "^0.3.2",
-    "uglifyjs-webpack-plugin": "^2.0.1",
-    "webpack": "^4.27.1",
-    "webpack-cli": "^3.1.2",
-    "webpack-merge": "^4.1.5"
+    "uglifyjs-webpack-plugin": "^2.1.1",
+    "webpack": "^4.28.4",
+    "webpack-cli": "^3.2.1",
+    "webpack-merge": "^4.2.1"
   }
 }
