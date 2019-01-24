@@ -425,6 +425,7 @@ function (_AdapterService) {
         var _this3 = this;
 
         var params,
+            patchEntry,
             entries,
             _args6 = arguments;
         return regeneratorRuntime.wrap(function _callee6$(_context6) {
@@ -433,30 +434,34 @@ function (_AdapterService) {
               case 0:
                 params = _args6.length > 2 && _args6[2] !== undefined ? _args6[2] : {};
 
+                patchEntry = function patchEntry(entry) {
+                  var currentId = entry[_this3.id];
+                  _this3.store[currentId] = _.extend(_this3.store[currentId], _.omit(data, _this3.id));
+                  return _select(_this3.store[currentId], params, _this3.id);
+                };
+
                 if (!(id === null)) {
-                  _context6.next = 6;
+                  _context6.next = 7;
                   break;
                 }
 
-                _context6.next = 4;
+                _context6.next = 5;
                 return this.getEntries(params);
 
-              case 4:
+              case 5:
                 entries = _context6.sent;
-                return _context6.abrupt("return", Promise.all(entries.map(function (current) {
-                  return _this3._patch(current[_this3.id], data, params);
-                })));
+                return _context6.abrupt("return", entries.map(patchEntry));
 
-              case 6:
-                _context6.next = 8;
+              case 7:
+                _context6.t0 = patchEntry;
+                _context6.next = 10;
                 return this._get(id, params);
 
-              case 8:
-                // Will throw an error if not found
-                this.store[id] = _.extend(this.store[id], _.omit(data, this.id));
-                return _context6.abrupt("return", this._get(id, params));
-
               case 10:
+                _context6.t1 = _context6.sent;
+                return _context6.abrupt("return", (0, _context6.t0)(_context6.t1));
+
+              case 12:
               case "end":
                 return _context6.stop();
             }
@@ -602,6 +607,9 @@ function cleanQuery(query, operators, filters) {
       result[key] = cleanQuery(value, operators, filters);
     });
 
+    Object.getOwnPropertySymbols(query).forEach(function (symbol) {
+      result[symbol] = query[symbol];
+    });
     return result;
   }
 
@@ -763,7 +771,7 @@ var callMethod = function callMethod(self, name) {
 
 var checkMulti = function checkMulti(method, option) {
   if (option === true) {
-    return;
+    return true;
   }
 
   return Array.isArray(option) ? option.includes(method) : false;
@@ -2005,7 +2013,9 @@ function setup(env) {
   }
 
   function extend(namespace, delimiter) {
-    return createDebug(this.namespace + (typeof delimiter === 'undefined' ? ':' : delimiter) + namespace);
+    var newDebug = createDebug(this.namespace + (typeof delimiter === 'undefined' ? ':' : delimiter) + namespace);
+    newDebug.log = this.log;
+    return newDebug;
   }
   /**
   * Enables a debug mode by namespaces. This can include modes
