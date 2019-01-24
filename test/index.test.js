@@ -95,6 +95,24 @@ describe('Feathers Memory Service', () => {
     await people.remove(person.id.toString());
   });
 
+  it('patch record with prop also in query', async () => {
+    app.use('/animals', memory({ multi: true }));
+    const animals = app.service('animals');
+    await animals.create([{
+      type: 'cat',
+      age: 30
+    }, {
+      type: 'dog',
+      age: 10
+    }]);
+
+    const [updated] = await animals.patch(null, { age: 40 }, { query: { age: 30 } });
+
+    assert.strictEqual(updated.age, 40);
+
+    await animals.remove(null, {});
+  });
+
   it('allows to pass custom find and sort matcher', async () => {
     let sorterCalled = false;
     let matcherCalled = false;
