@@ -1,7 +1,7 @@
 {
   "name": "feathers-memory",
   "description": "An in memory service store",
-  "version": "3.0.1",
+  "version": "3.0.2",
   "homepage": "https://github.com/feathersjs-ecosystem/feathers-memory",
   "main": "lib/index",
   "keywords": [
