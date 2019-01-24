@@ -1,5 +1,18 @@
 # Change Log
 
+## [v3.0.2](https://github.com/feathersjs-ecosystem/feathers-memory/tree/v3.0.2) (2019-01-24)
+[Full Changelog](https://github.com/feathersjs-ecosystem/feathers-memory/compare/v3.0.1...v3.0.2)
+
+**Closed issues:**
+
+- Multiple patch records [\#92](https://github.com/feathersjs-ecosystem/feathers-memory/issues/92)
+
+**Merged pull requests:**
+
+- Allow patch to update prop that is within the query [\#93](https://github.com/feathersjs-ecosystem/feathers-memory/pull/93) ([Mattchewone](https://github.com/Mattchewone))
+- Add new tests [\#91](https://github.com/feathersjs-ecosystem/feathers-memory/pull/91) ([daffl](https://github.com/daffl))
+- Update @feathersjs/adapter-commons to the latest version 🚀 [\#90](https://github.com/feathersjs-ecosystem/feathers-memory/pull/90) ([greenkeeper[bot]](https://github.com/apps/greenkeeper))
+
 ## [v3.0.1](https://github.com/feathersjs-ecosystem/feathers-memory/tree/v3.0.1) (2018-12-29)
 [Full Changelog](https://github.com/feathersjs-ecosystem/feathers-memory/compare/v3.0.0...v3.0.1)
 
