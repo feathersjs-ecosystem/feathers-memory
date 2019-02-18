@@ -69,7 +69,7 @@
     "babel-loader": "^8.0.5",
     "body-parser": "^1.18.3",
     "istanbul": "^1.1.0-alpha.1",
-    "mocha": "^5.2.0",
+    "mocha": "^6.0.0",
     "semistandard": "^13.0.1",
     "shx": "^0.3.2",
     "uglifyjs-webpack-plugin": "^2.1.1",
