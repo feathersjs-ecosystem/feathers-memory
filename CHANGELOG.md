@@ -1,5 +1,13 @@
 # Change Log
 
+## [v4.0.0](https://github.com/feathersjs-ecosystem/feathers-memory/tree/v4.0.0) (2019-07-05)
+[Full Changelog](https://github.com/feathersjs-ecosystem/feathers-memory/compare/v3.0.2...v4.0.0)
+
+**Merged pull requests:**
+
+- Add TypeScript definitions and upgrade to Feathers 4 [\#97](https://github.com/feathersjs-ecosystem/feathers-memory/pull/97) ([daffl](https://github.com/daffl))
+- Update mocha to the latest version 🚀 [\#94](https://github.com/feathersjs-ecosystem/feathers-memory/pull/94) ([greenkeeper[bot]](https://github.com/apps/greenkeeper))
+
 ## [v3.0.2](https://github.com/feathersjs-ecosystem/feathers-memory/tree/v3.0.2) (2019-01-24)
 [Full Changelog](https://github.com/feathersjs-ecosystem/feathers-memory/compare/v3.0.1...v3.0.2)
 
