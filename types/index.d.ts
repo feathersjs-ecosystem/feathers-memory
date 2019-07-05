@@ -14,8 +14,11 @@ export interface MemoryServiceOptions extends ServiceOptions {
 }
 
 export class Service<T = any> extends AdapterService implements InternalServiceMethods<T> {
+  options: MemoryServiceOptions;
   store: MemoryServiceStore;
+
   constructor(config?: Partial<MemoryServiceOptions>);
+
   _find(params?: Params): Promise<T | T[] | Paginated<T>>;
   _get(id: Id, params?: Params): Promise<T>;
   _create(data: Partial<T> | Array<Partial<T>>, params?: Params): Promise<T | T[]>;
