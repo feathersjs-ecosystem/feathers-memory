@@ -13,7 +13,7 @@ export interface MemoryServiceOptions extends ServiceOptions {
   sorter?: (sort: any) => any;
 }
 
-export class Service<T = any> extends AdapterService implements InternalServiceMethods<T> {
+export class Service<T = any> extends AdapterService<T> implements InternalServiceMethods<T> {
   options: MemoryServiceOptions;
   store: MemoryServiceStore;
 
