@@ -165,8 +165,8 @@ function (_AdapterService) {
       matcher: sift,
       sorter: sorter
     }, options)));
-    _this.store = options.store || {};
     _this._uId = options.startId || 0;
+    _this.store = options.store || {};
     return _this;
   }
 
