@@ -1,5 +1,20 @@
 # Change Log
 
+## [v4.0.1](https://github.com/feathersjs-ecosystem/feathers-memory/tree/v4.0.1) (2019-09-29)
+[Full Changelog](https://github.com/feathersjs-ecosystem/feathers-memory/compare/v4.0.0...v4.0.1)
+
+**Closed issues:**
+
+- An in-range update of @types/node is breaking the build 🚨 [\#101](https://github.com/feathersjs-ecosystem/feathers-memory/issues/101)
+- An in-range update of webpack is breaking the build 🚨 [\#98](https://github.com/feathersjs-ecosystem/feathers-memory/issues/98)
+
+**Merged pull requests:**
+
+- Pass entity type to AdapterService\<T\> [\#103](https://github.com/feathersjs-ecosystem/feathers-memory/pull/103) ([daffl](https://github.com/daffl))
+- Update semistandard to the latest version 🚀 [\#102](https://github.com/feathersjs-ecosystem/feathers-memory/pull/102) ([greenkeeper[bot]](https://github.com/apps/greenkeeper))
+- Update dtslint to the latest version 🚀 [\#100](https://github.com/feathersjs-ecosystem/feathers-memory/pull/100) ([greenkeeper[bot]](https://github.com/apps/greenkeeper))
+- Greenkeeper/webpack 4.36.1 [\#99](https://github.com/feathersjs-ecosystem/feathers-memory/pull/99) ([daffl](https://github.com/daffl))
+
 ## [v4.0.0](https://github.com/feathersjs-ecosystem/feathers-memory/tree/v4.0.0) (2019-07-05)
 [Full Changelog](https://github.com/feathersjs-ecosystem/feathers-memory/compare/v3.0.2...v4.0.0)
 
