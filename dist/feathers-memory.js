@@ -576,7 +576,7 @@ function parse(number) {
 
 function getLimit(limit, paginate) {
   if (paginate && paginate.default) {
-    var lower = typeof limit === 'number' ? limit : paginate.default;
+    var lower = typeof limit === 'number' && !isNaN(limit) ? limit : paginate.default;
     var upper = typeof paginate.max === 'number' ? paginate.max : Number.MAX_VALUE;
     return Math.min(lower, upper);
   }
@@ -1114,20 +1114,23 @@ exports.sorter = sorter;
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
+"use strict";
+
+
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
-var _require = __webpack_require__(/*! ./utils */ "./node_modules/@feathersjs/commons/lib/utils.js"),
-    _require$_ = _require._,
-    each = _require$_.each,
-    pick = _require$_.pick,
-    createSymbol = _require.createSymbol; // To skip further hooks
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 
+var utils_1 = __webpack_require__(/*! ./utils */ "./node_modules/@feathersjs/commons/lib/utils.js");
 
-var SKIP = createSymbol('__feathersSkipHooks');
-exports.SKIP = SKIP;
-exports.ACTIVATE_HOOKS = createSymbol('__feathersActivateHooks');
+var _utils_1$_ = utils_1._,
+    each = _utils_1$_.each,
+    pick = _utils_1$_.pick;
+exports.ACTIVATE_HOOKS = utils_1.createSymbol('__feathersActivateHooks');
 
-exports.createHookObject = function createHookObject(method) {
+function createHookObject(method) {
   var data = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
   var hook = {};
   Object.defineProperty(hook, 'toJSON', {
@@ -1153,10 +1156,11 @@ exports.createHookObject = function createHookObject(method) {
     }
 
   });
-}; // Fallback used by `makeArguments` which usually won't be used
+}
 
+exports.createHookObject = createHookObject; // Fallback used by `makeArguments` which usually won't be used
 
-exports.defaultMakeArguments = function defaultMakeArguments(hook) {
+function defaultMakeArguments(hook) {
   var result = [];
 
   if (typeof hook.id !== 'undefined') {
@@ -1169,11 +1173,12 @@ exports.defaultMakeArguments = function defaultMakeArguments(hook) {
 
   result.push(hook.params || {});
   return result;
-}; // Turns a hook object back into a list of arguments
+}
+
+exports.defaultMakeArguments = defaultMakeArguments; // Turns a hook object back into a list of arguments
 // to call a service method with
 
-
-exports.makeArguments = function makeArguments(hook) {
+function makeArguments(hook) {
   switch (hook.method) {
     case 'find':
       return [hook.params];
@@ -1190,12 +1195,13 @@ exports.makeArguments = function makeArguments(hook) {
       return [hook.data, hook.params];
   }
 
-  return exports.defaultMakeArguments(hook);
-}; // Converts different hook registration formats into the
+  return defaultMakeArguments(hook);
+}
+
+exports.makeArguments = makeArguments; // Converts different hook registration formats into the
 // same internal format
 
-
-exports.convertHookData = function convertHookData(obj) {
+function convertHookData(obj) {
   var hook = {};
 
   if (Array.isArray(obj)) {
@@ -1213,18 +1219,20 @@ exports.convertHookData = function convertHookData(obj) {
   }
 
   return hook;
-}; // Duck-checks a given object to be a hook object
+}
+
+exports.convertHookData = convertHookData; // Duck-checks a given object to be a hook object
 // A valid hook object has `type` and `method`
 
-
-exports.isHookObject = function isHookObject(hookObject) {
+function isHookObject(hookObject) {
   return _typeof(hookObject) === 'object' && typeof hookObject.method === 'string' && typeof hookObject.type === 'string';
-}; // Returns all service and application hooks combined
+}
+
+exports.isHookObject = isHookObject; // Returns all service and application hooks combined
 // for a given method and type `appLast` sets if the hooks
 // from `app` should be added last (or first by default)
 
-
-exports.getHooks = function getHooks(app, service, type, method) {
+function getHooks(app, service, type, method) {
   var appLast = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : false;
   var appHooks = app.__hooks[type][method] || [];
   var serviceHooks = service.__hooks[type][method] || [];
@@ -1235,9 +1243,11 @@ exports.getHooks = function getHooks(app, service, type, method) {
   }
 
   return appHooks.concat(serviceHooks);
-};
+}
 
-exports.processHooks = function processHooks(hooks, initialHookObject) {
+exports.getHooks = getHooks;
+
+function processHooks(hooks, initialHookObject) {
   var _this = this;
 
   var hookObject = initialHookObject;
@@ -1246,11 +1256,7 @@ exports.processHooks = function processHooks(hooks, initialHookObject) {
     // Either use the returned hook object or the current
     // hook object from the chain if the hook returned undefined
     if (current) {
-      if (current === SKIP) {
-        return SKIP;
-      }
-
-      if (!exports.isHookObject(current)) {
+      if (!isHookObject(current)) {
         throw new Error("".concat(hookObject.type, " hook for '").concat(hookObject.method, "' method returned invalid hook object"));
       }
 
@@ -1261,27 +1267,13 @@ exports.processHooks = function processHooks(hooks, initialHookObject) {
   }; // Go through all hooks and chain them into our promise
 
 
-  var promise = hooks.reduce(function (promise, fn) {
-    var hook = fn.bind(_this);
+  var promise = hooks.reduce(function (current, fn) {
+    // @ts-ignore
+    var hook = fn.bind(_this); // Use the returned hook object or the old one
 
-    if (hook.length === 2) {
-      // function(hook, next)
-      promise = promise.then(function (hookObject) {
-        return hookObject === SKIP ? SKIP : new Promise(function (resolve, reject) {
-          hook(hookObject, function (error, result) {
-            return error ? reject(error) : resolve(result);
-          });
-        });
-      });
-    } else {
-      // function(hook)
-      promise = promise.then(function (hookObject) {
-        return hookObject === SKIP ? SKIP : hook(hookObject);
-      });
-    } // Use the returned hook object or the old one
-
-
-    return promise.then(updateCurrentHook);
+    return current.then(function (currentHook) {
+      return hook(currentHook);
+    }).then(updateCurrentHook);
   }, Promise.resolve(hookObject));
   return promise.then(function () {
     return hookObject;
@@ -1290,39 +1282,42 @@ exports.processHooks = function processHooks(hooks, initialHookObject) {
     error.hook = hookObject;
     throw error;
   });
-}; // Add `.hooks` functionality to an object
+}
 
+exports.processHooks = processHooks; // Add `.hooks` functionality to an object
 
-exports.enableHooks = function enableHooks(obj, methods, types) {
+function enableHooks(obj, methods, types) {
   if (typeof obj.hooks === 'function') {
     return obj;
   }
 
-  var __hooks = {};
+  var hookData = {};
   types.forEach(function (type) {
     // Initialize properties where hook functions are stored
-    __hooks[type] = {};
+    hookData[type] = {};
   }); // Add non-enumerable `__hooks` property to the object
 
   Object.defineProperty(obj, '__hooks', {
-    value: __hooks
+    value: hookData
   });
   return Object.assign(obj, {
     hooks: function hooks(allHooks) {
       var _this2 = this;
 
-      each(allHooks, function (obj, type) {
+      each(allHooks, function (current, type) {
+        // @ts-ignore
         if (!_this2.__hooks[type]) {
           throw new Error("'".concat(type, "' is not a valid hook type"));
         }
 
-        var hooks = exports.convertHookData(obj);
-        each(hooks, function (value, method) {
+        var hooks = convertHookData(current);
+        each(hooks, function (_value, method) {
           if (method !== 'all' && methods.indexOf(method) === -1) {
             throw new Error("'".concat(method, "' is not a valid hook method"));
           }
         });
         methods.forEach(function (method) {
+          // @ts-ignore
           var myHooks = _this2.__hooks[type][method] || (_this2.__hooks[type][method] = []);
 
           if (hooks.all) {
@@ -1337,7 +1332,9 @@ exports.enableHooks = function enableHooks(obj, methods, types) {
       return this;
     }
   });
-};
+}
+
+exports.enableHooks = enableHooks;
 
 /***/ }),
 
@@ -1348,13 +1345,34 @@ exports.enableHooks = function enableHooks(obj, methods, types) {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-var utils = __webpack_require__(/*! ./utils */ "./node_modules/@feathersjs/commons/lib/utils.js");
+"use strict";
 
-var hooks = __webpack_require__(/*! ./hooks */ "./node_modules/@feathersjs/commons/lib/hooks.js");
 
-module.exports = Object.assign({}, utils, {
-  hooks: hooks
+function __export(m) {
+  for (var p in m) {
+    if (!exports.hasOwnProperty(p)) exports[p] = m[p];
+  }
+}
+
+var __importStar = this && this.__importStar || function (mod) {
+  if (mod && mod.__esModule) return mod;
+  var result = {};
+  if (mod != null) for (var k in mod) {
+    if (Object.hasOwnProperty.call(mod, k)) result[k] = mod[k];
+  }
+  result["default"] = mod;
+  return result;
+};
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
 });
+
+var hookUtils = __importStar(__webpack_require__(/*! ./hooks */ "./node_modules/@feathersjs/commons/lib/hooks.js"));
+
+__export(__webpack_require__(/*! ./utils */ "./node_modules/@feathersjs/commons/lib/utils.js"));
+
+exports.hooks = hookUtils;
 
 /***/ }),
 
@@ -1365,7 +1383,10 @@ module.exports = Object.assign({}, utils, {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-/* WEBPACK VAR INJECTION */(function(process) {function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+"use strict";
+/* WEBPACK VAR INJECTION */(function(process) {
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
@@ -1373,21 +1394,25 @@ function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArra
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance"); }
 
-function _iterableToArrayLimit(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+function _iterableToArrayLimit(arr, i) { if (!(Symbol.iterator in Object(arr) || Object.prototype.toString.call(arr) === "[object Arguments]")) { return; } var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
-// Removes all leading and trailing slashes from a path
-exports.stripSlashes = function stripSlashes(name) {
+Object.defineProperty(exports, "__esModule", {
+  value: true
+}); // Removes all leading and trailing slashes from a path
+
+function stripSlashes(name) {
   return name.replace(/^(\/+)|(\/+)$/g, '');
-}; // A set of lodash-y utility functions that use ES6
+}
 
+exports.stripSlashes = stripSlashes; // A set of lodash-y utility functions that use ES6
 
-var _ = exports._ = {
+exports._ = {
   each: function each(obj, callback) {
     if (obj && typeof obj.forEach === 'function') {
       obj.forEach(callback);
-    } else if (_.isObject(obj)) {
+    } else if (exports._.isObject(obj)) {
       Object.keys(obj).forEach(function (key) {
         return callback(obj[key], key);
       });
@@ -1419,17 +1444,17 @@ var _ = exports._ = {
     return Object.keys(obj);
   },
   values: function values(obj) {
-    return _.keys(obj).map(function (key) {
+    return exports._.keys(obj).map(function (key) {
       return obj[key];
     });
   },
   isMatch: function isMatch(obj, item) {
-    return _.keys(item).every(function (key) {
+    return exports._.keys(item).every(function (key) {
       return obj[key] === item[key];
     });
   },
   isEmpty: function isEmpty(obj) {
-    return _.keys(obj).length === 0;
+    return exports._.keys(obj).length === 0;
   },
   isObject: function isObject(item) {
     return _typeof(item) === 'object' && !Array.isArray(item) && item !== null;
@@ -1437,14 +1462,18 @@ var _ = exports._ = {
   isObjectOrArray: function isObjectOrArray(value) {
     return _typeof(value) === 'object' && value !== null;
   },
-  extend: function extend() {
-    return Object.assign.apply(Object, arguments);
+  extend: function extend(first) {
+    for (var _len = arguments.length, rest = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
+      rest[_key - 1] = arguments[_key];
+    }
+
+    return Object.assign.apply(Object, [first].concat(rest));
   },
   omit: function omit(obj) {
-    var result = _.extend({}, obj);
+    var result = exports._.extend({}, obj);
 
-    for (var _len = arguments.length, keys = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
-      keys[_key - 1] = arguments[_key];
+    for (var _len2 = arguments.length, keys = new Array(_len2 > 1 ? _len2 - 1 : 0), _key2 = 1; _key2 < _len2; _key2++) {
+      keys[_key2 - 1] = arguments[_key2];
     }
 
     keys.forEach(function (key) {
@@ -1453,8 +1482,8 @@ var _ = exports._ = {
     return result;
   },
   pick: function pick(source) {
-    for (var _len2 = arguments.length, keys = new Array(_len2 > 1 ? _len2 - 1 : 0), _key2 = 1; _key2 < _len2; _key2++) {
-      keys[_key2 - 1] = arguments[_key2];
+    for (var _len3 = arguments.length, keys = new Array(_len3 > 1 ? _len3 - 1 : 0), _key3 = 1; _key3 < _len3; _key3++) {
+      keys[_key3 - 1] = arguments[_key3];
     }
 
     return keys.reduce(function (result, key) {
@@ -1467,14 +1496,14 @@ var _ = exports._ = {
   },
   // Recursively merge the source object into the target object
   merge: function merge(target, source) {
-    if (_.isObject(target) && _.isObject(source)) {
+    if (exports._.isObject(target) && exports._.isObject(source)) {
       Object.keys(source).forEach(function (key) {
-        if (_.isObject(source[key])) {
+        if (exports._.isObject(source[key])) {
           if (!target[key]) {
             Object.assign(target, _defineProperty({}, key, {}));
           }
 
-          _.merge(target[key], source[key]);
+          exports._.merge(target[key], source[key]);
         } else {
           Object.assign(target, _defineProperty({}, key, source[key]));
         }
@@ -1485,12 +1514,13 @@ var _ = exports._ = {
   }
 }; // Duck-checks if an object looks like a promise
 
+function isPromise(result) {
+  return exports._.isObject(result) && typeof result.then === 'function';
+}
 
-exports.isPromise = function isPromise(result) {
-  return _.isObject(result) && typeof result.then === 'function';
-};
+exports.isPromise = isPromise;
 
-exports.makeUrl = function makeUrl(path) {
+function makeUrl(path) {
   var app = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
   var get = typeof app.get === 'function' ? app.get.bind(app) : function () {};
   var env = get('env') || "development";
@@ -1500,11 +1530,15 @@ exports.makeUrl = function makeUrl(path) {
   var port = env === 'development' || env === 'test' || env === undefined ? ":".concat(PORT) : '';
   path = path || '';
   return "".concat(protocol, "://").concat(host).concat(port, "/").concat(exports.stripSlashes(path));
-};
+}
 
-exports.createSymbol = function (name) {
+exports.makeUrl = makeUrl;
+
+function createSymbol(name) {
   return typeof Symbol !== 'undefined' ? Symbol(name) : name;
-};
+}
+
+exports.createSymbol = createSymbol;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../../process/browser.js */ "./node_modules/process/browser.js")))
 
 /***/ }),
