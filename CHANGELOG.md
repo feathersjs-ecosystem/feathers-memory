@@ -1,5 +1,12 @@
 # Change Log
 
+## [v4.1.0](https://github.com/feathersjs-ecosystem/feathers-memory/tree/v4.1.0) (2019-10-07)
+[Full Changelog](https://github.com/feathersjs-ecosystem/feathers-memory/compare/v4.0.1...v4.1.0)
+
+**Merged pull requests:**
+
+- Update all dependencies [\#104](https://github.com/feathersjs-ecosystem/feathers-memory/pull/104) ([daffl](https://github.com/daffl))
+
 ## [v4.0.1](https://github.com/feathersjs-ecosystem/feathers-memory/tree/v4.0.1) (2019-09-29)
 [Full Changelog](https://github.com/feathersjs-ecosystem/feathers-memory/compare/v4.0.0...v4.0.1)
 
