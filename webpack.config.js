@@ -6,7 +6,7 @@ const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 const isProduction = process.env.NODE_ENV === 'production';
 
 const config = {
-  entry: `./lib`,
+  entry: './lib',
   output: {
     library: ['feathers', 'memory'],
     libraryTarget: 'umd',
