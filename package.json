@@ -59,7 +59,7 @@
     "@feathersjs/adapter-commons": "^4.4.3",
     "@feathersjs/commons": "^4.4.3",
     "@feathersjs/errors": "^4.4.3",
-    "sift": "^11.0.10"
+    "sift": "^12.0.0"
   },
   "devDependencies": {
     "@babel/core": "^7.8.3",
