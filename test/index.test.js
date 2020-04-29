@@ -186,6 +186,16 @@ describe('Feathers Memory Service', () => {
     }
   });
 
+  it('store ids that are not numbers', async () => {
+    const testCandy = { id: '00000000-0000-0000-0000-000000000000', name: 'Testing' };
+    const startCandies = [];
+    startCandies[testCandy.id] = testCandy;
+    app.use('/candy', memory({ store: startCandies }));
+    const candy = await app.service('candy').get(testCandy.id);
+
+    assert.deepStrictEqual(candy, testCandy);
+  });
+
   testSuite(app, errors, 'people');
   testSuite(app, errors, 'people-customid', 'customid');
 });

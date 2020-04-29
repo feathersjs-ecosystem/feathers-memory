@@ -2,9 +2,9 @@
 import { Params, Paginated, Id, NullableId } from '@feathersjs/feathers';
 import { AdapterService, ServiceOptions, InternalServiceMethods } from '@feathersjs/adapter-commons';
 
-export interface MemoryServiceStore {
-  [key: number]: any;
-}
+export type MemoryServiceStore = {
+  [key in Id]: any;
+};
 
 export interface MemoryServiceOptions extends ServiceOptions {
   store: MemoryServiceStore;
