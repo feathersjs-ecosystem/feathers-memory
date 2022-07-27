@@ -121,7 +121,7 @@ describe('Feathers Memory Service', () => {
     });
 
     const updatedPerson = await people.patch(person.id, {
-      $unset: { age: "" }
+      $unset: { age: '' }
     });
 
     assert.strictEqual(typeof updatedPerson.age, 'undefined');
@@ -142,7 +142,7 @@ describe('Feathers Memory Service', () => {
     });
 
     const [updated1, updated2] = await animals.patch(null, {
-      $unset: { age: "" }
+      $unset: { age: '' }
     });
 
     assert.strictEqual(typeof updated1.age, 'undefined');
