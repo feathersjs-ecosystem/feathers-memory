@@ -38,6 +38,12 @@ __Options:__
 - `whitelist` (*optional*) - A list of additional query parameters to allow
 - `multi` (*optional*) - Allow `create` with arrays and `update` and `remove` with `id` `null` to change multiple items. Can be `true` for all methods or an array of allowed methods (e.g. `[ 'remove', 'create' ]`)
 
+Along with the common Feathers query syntax, this service also supports using the `$unset` data property similar to Mongo/Mongoose to delete properties. But, unlike Mongo/Mongoose it does not support dot notation.
+
+```js
+await service.patch(1, { $unset: { name: "" } });
+```
+
 ## Example
 
 Here is an example of a Feathers server with a `messages` in-memory service that supports pagination:
