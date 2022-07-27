@@ -113,6 +113,45 @@ describe('Feathers Memory Service', () => {
     await animals.remove(null, {});
   });
 
+  it('patch with $unset', async () => {
+    const people = app.service('people');
+    const person = await people.create({
+      name: 'Tester',
+      age: 33
+    });
+
+    const updatedPerson = await people.patch(person.id, {
+      $unset: { age: "" }
+    });
+
+    assert.strictEqual(typeof updatedPerson.age, 'undefined');
+
+    await people.remove(person.id);
+  });
+
+  it('patch with $unset multi', async () => {
+    app.use('/animals', memory({ multi: true }));
+    const animals = app.service('animals');
+    const animal1 = await animals.create({
+      name: 'Tester',
+      age: 33
+    });
+    const animal2 = await animals.create({
+      name: 'Tester',
+      age: 33
+    });
+
+    const [updated1, updated2] = await animals.patch(null, {
+      $unset: { age: "" }
+    });
+
+    assert.strictEqual(typeof updated1.age, 'undefined');
+    assert.strictEqual(typeof updated2.age, 'undefined');
+
+    await animals.remove(animal1.id);
+    await animals.remove(animal2.id);
+  });
+
   it('allows to pass custom find and sort matcher', async () => {
     let sorterCalled = false;
     let matcherCalled = false;
