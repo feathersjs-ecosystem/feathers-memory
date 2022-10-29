@@ -1,5 +1,11 @@
 # feathers-memory
 
+<alert type="error">
+
+  The new version for Dove is being developed at [@feathersjs/memory](https://github.com/feathersjs/feathers/tree/dove/packages/memory)
+  
+</alert>
+
 [![Greenkeeper badge](https://badges.greenkeeper.io/feathersjs-ecosystem/feathers-memory.svg)](https://greenkeeper.io/)
 
 [![Build Status](https://travis-ci.org/feathersjs-ecosystem/feathers-memory.png?branch=master)](https://travis-ci.org/feathersjs-ecosystem/feathers-memory)
