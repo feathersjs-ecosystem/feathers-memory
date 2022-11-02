@@ -1,3 +1,5 @@
+> __Important:__ This module has been moved to `@feathersjs/memory` and https://github.com/feathersjs/feathers
+
 # feathers-memory
 
 [![Greenkeeper badge](https://badges.greenkeeper.io/feathersjs-ecosystem/feathers-memory.svg)](https://greenkeeper.io/)
